@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b9e6a4a5d7ece2fdf6c29de637aaf0ef",
+    "content-hash": "8bf7d3717c52c3c302e82722fd146453",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
-            "version": "v3.4.0",
+            "version": "v3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "4c547f2175b9a05aa43551f6927da83fe249ce42"
+                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/4c547f2175b9a05aa43551f6927da83fe249ce42",
-                "reference": "4c547f2175b9a05aa43551f6927da83fe249ce42",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/68b0d231a13201eb14acd3dc84e51543d16e5f7e",
+                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e",
                 "shasum": ""
             },
             "require": {
@@ -54,7 +54,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2018-12-13T23:45:51+00:00"
+            "time": "2019-02-13T15:55:38+00:00"
         },
         {
             "name": "bower-asset/inputmask",
@@ -905,16 +905,16 @@
         },
         {
             "name": "onokumus/metismenu",
-            "version": "v3.0.5",
+            "version": "v2.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/onokumus/metismenu.git",
-                "reference": "85f027f2eb9cb6e9352093ace833e9702d86fe67"
+                "reference": "d10aefc23f873405b883dac72ef72cb115d1540e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/onokumus/metismenu/zipball/85f027f2eb9cb6e9352093ace833e9702d86fe67",
-                "reference": "85f027f2eb9cb6e9352093ace833e9702d86fe67",
+                "url": "https://api.github.com/repos/onokumus/metismenu/zipball/d10aefc23f873405b883dac72ef72cb115d1540e",
+                "reference": "d10aefc23f873405b883dac72ef72cb115d1540e",
                 "shasum": ""
             },
             "suggest": {
@@ -943,7 +943,7 @@
                 "plugin",
                 "web"
             ],
-            "time": "2019-12-28T20:34:12+00:00"
+            "time": "2018-02-16T20:06:17+00:00"
         },
         {
             "name": "oonne/yii2-sortable-grid-view",

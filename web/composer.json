@@ -21,7 +21,7 @@
         "kartik-v/yii2-datecontrol": "*",
         "kartik-v/yii2-date-range": "1.6.7",
         "kartik-v/yii2-widget-datepicker": "*",
-        "onokumus/metismenu": "*",
+        "onokumus/metismenu": "2.7.4",
         "nterms/yii2-pagesize-widget": "*",
         "oonne/yii2-sortable-grid-view": "*",
         "daixianceng/yii2-echarts": "*"
