@@ -13,12 +13,13 @@ class UserController extends Controller
     protected function verbs()
     {
         return [
-            'login' => ['post']
+            'login' => ['post'],
+            'wx-login' => ['post']
         ];
     }
 
     /**
-     * Login
+     * 旧系统登录接口，帐号密码换token
      */
     public function actionLogin()
     {
@@ -39,6 +40,33 @@ class UserController extends Controller
                     'errors' => $model->getFirstErrors()
                 ]
             ];
+        }
+    }
+
+    /**
+     * 新系统登录接口，openid换token
+     */
+    public function actionWxLogin()
+    {
+        $wx = Yii::$app->request->post();
+        $openid = $wx['openid'];
+
+        $model = Users::find($id)
+                    ->where(['openid' => $openid])
+                    ->one();
+
+        if ($model) {
+            $data = $model->user->toArray(['username', 'nickname', 'access_token']);
+            return [
+                'Ret' => 0,
+                'Data' => $data
+            ];
+        } else {
+            Yii::warning('查无此人！');
+            return [
+                'Ret' => 1,
+            ];
+
         }
     }
 
