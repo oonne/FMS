@@ -32,8 +32,7 @@ class NoteSearch extends Note
         $data = [];
 
         if (!($this->load($params) && $this->validate())) {
-            $data['dataProvider'] = $dataProvider;
-            return $data;
+            return $dataProvider;
         }
 
         $dates = explode('~', $this ->dateRange, 2);
