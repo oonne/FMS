@@ -45,8 +45,7 @@ class NoteSearch extends Note
         $query->andFilterWhere(['like', 'note_title', $this->note_title])
               ->andFilterWhere(['like', 'note_content', $this->note_content]);
 
-        $data['dataProvider'] = $dataProvider;
-        return $data;
+        return $dataProvider;
     }
 
 }
