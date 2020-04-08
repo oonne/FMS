@@ -51,6 +51,11 @@ $this->title = '用户管理';
                     'filterInputOptions' => ['class' => 'form-control input-sm'],
                 ],
                 [
+                    'attribute' => 'openid',
+                    'headerOptions' => ['class' => 'col-md-2'],
+                    'filterInputOptions' => ['class' => 'form-control input-sm'],
+                ],
+                [
                     'attribute' => 'status',
                     'format' => 'raw',
                     'filter' => User::getStatusList(),

@@ -45,6 +45,8 @@ class User extends ActiveRecord implements IdentityInterface
             [['nickname'], 'required'],
             [['nickname'], 'string', 'max' => 255],
 
+            [['openid'], 'string', 'max' => 255],
+
             ['status', 'default', 'value' => self::STATUS_ENABLED],
             ['status', 'in', 'range' => [self::STATUS_ENABLED, self::STATUS_DISABLED]],
 
@@ -66,9 +68,10 @@ class User extends ActiveRecord implements IdentityInterface
             'username' => '用户名',
             'nickname' => '昵称',
             'password' => '密码',
+            'openid' => 'OpenId',
             'password_hash' => '密码hash',
             'access_token' => 'Access Token',
-            'auth_key' => '记住密码key',
+            'auth_key' => '密码key',
             'status' => '状态',
         ];
     }

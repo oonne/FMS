@@ -23,6 +23,7 @@ $this->title = $model->isNewRecord ? '创建用户' : '修改用户';
     <?php $form = ActiveForm::begin(); ?>
         <?= $form->field($model, 'username') ?>
         <?= $form->field($model, 'nickname') ?>
+        <?= $form->field($model, 'openid') ?>
         <?= $form->field($model, 'password')->passwordInput() ?>
         <div class="form-group">
             <?= Html::submitButton('保存', ['class' => 'btn btn-success']) ?>
