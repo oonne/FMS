@@ -28,6 +28,14 @@ $menu = [
             'chart' => ['label' => '统计图表', 'url' => ['chart/index'], 'active' => in_array($route, ['chart/index'])],
         ]
     ],
+    [
+        'label' => '<svg class="icon" aria-hidden="true"><use xlink:href="#icon-note"></use></svg>  记事本',
+        'url' => '#',
+        'items' => [
+            'notesuper' => ['label' => '记事本', 'url' => ['notesuper/index'], 'active' => in_array($route, ['notesuper/index', 'notesuper/add-note', 'notesuper/update-note', 'notesuper/view-note'])],
+            // 'diarysuper' => ['label' => '日记', 'url' => ['diarysuper/index'], 'active' => in_array($route, ['diarysuper/index', 'diarysuper/add-diary', 'diarysuper/update-diary', 'diarysuper/view-diary'])],
+        ]
+    ],
 ];
 
 ?>
