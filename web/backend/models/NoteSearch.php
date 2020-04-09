@@ -29,8 +29,6 @@ class NoteSearch extends Note
             'sort' => ['defaultOrder' => ['updated_at' => SORT_DESC]]
         ]);
 
-        $data = [];
-
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }

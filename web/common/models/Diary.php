@@ -2,14 +2,14 @@
 
 namespace common\models;
 
-class Note extends ActiveRecord
+class Diary extends ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return '{{%note}}';
+        return '{{%diary}}';
     }
 
     /**
@@ -28,10 +28,10 @@ class Note extends ActiveRecord
     public function rules()
     {
         return [
-            [['note_title', 'note_content'], 'required', 'on' => ['creation']],
+            [['diary_date', 'diary_content'], 'required', 'on' => ['creation']],
 
-            [['note_title'], 'string', 'max' => 255],
-            [['note_content'], 'string'],
+            [['diary_date'], 'date', 'format' => 'yyyy-MM-dd'],
+            [['diary_content'], 'string'],
         ];
     }
 
@@ -41,13 +41,12 @@ class Note extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'Note ID',
-            'note_title' => '标题',
-            'note_content' => '内容',
+            'id' => 'Diary ID',
+            'diary_date' => '日期',
+            'diary_content' => '内容',
             'created_at' => '创建时间',
             'updated_at' => '更新时间',
             'last_editor' => '最后更新帐号',
-            'dateRange' => '更新时间',
         ];
     }
 }
