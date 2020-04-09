@@ -112,7 +112,7 @@ class DiarysuperController extends Controller
         $transaction = Yii::$app->db->beginTransaction();
         $recycleContent = $model->diary_date ."  \n". $model->diary_content;
         $recycle = new Recycle();
-        $recycle->recycle_type = Recycle::TYPE_DIAYR;
+        $recycle->recycle_type = Recycle::TYPE_DIARY;
         $recycle->recycle_content = $recycleContent;
         if($recycle->validate()&&$recycle->save(false)){
             try {
