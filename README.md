@@ -1,2 +1,2 @@
 # FMS
-Family management system. Privatized open source system, just developed for myself.
+私人项目，无参考价值
