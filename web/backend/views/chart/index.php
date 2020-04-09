@@ -36,7 +36,7 @@ $this->title = '统计图表';
             ],
             'pluginOptions' => [
                 'option' => [
-                    'color' => ['#d15346', '#add536'],
+                    // 'color' => ['#d15346', '#add536'],
                     'grid' => [
                         'left' => '2%',
                         'right' => '6%',
@@ -131,7 +131,7 @@ $this->title = '统计图表';
             ],
             'pluginOptions' => [
                 'option' => [
-                    'color' => ['#ccd539'],
+                    // 'color' => ['#ccd539'],
                     'grid' => [
                         'left' => '2%',
                         'right' => '6%',
@@ -181,7 +181,7 @@ $this->title = '统计图表';
             ],
             'pluginOptions' => [
                 'option' => [
-                    'color' => ['#d15346', '#72a4bb', '#a0c824', '#c18c30'],
+                    // 'color' => ['#d15346', '#72a4bb', '#a0c824', '#c18c30'],
                     'tooltip' => [
                         'trigger' => 'item',
                         'formatter' => '{a} <br/>{b}: {c} ({d}%)'
@@ -205,7 +205,7 @@ $this->title = '统计图表';
             ],
             'pluginOptions' => [
                 'option' => [
-                    'color' => ['#a0c824', '#72a4bb', '#6c6669'],
+                    // 'color' => ['#a0c824', '#72a4bb', '#6c6669'],
                     'tooltip' => [
                         'trigger' => 'item',
                         'formatter' => '{a} <br/>{b}: {c} ({d}%)'
