@@ -15,6 +15,7 @@ $menu = [
             'site' => ['label' => '系统信息', 'url' => ['site/index'], 'active' => in_array($route, ['site/index'])],
             'usersuper' => ['label' => '用户管理', 'url' => ['usersuper/index'], 'active' => in_array($route, ['usersuper/index', 'usersuper/add-user', 'usersuper/update-user'])],
             'recyclesuper' => ['label' => '回收站', 'url' => ['recyclesuper/index'], 'active' => in_array($route, ['recyclesuper/index', 'recyclesuper/view-recycle'])],
+            'incomesourcesuper' => ['label' => '收入来源', 'url' => ['incomesourcesuper/index'], 'active' => in_array($route, ['incomesourcesuper/index', 'incomesourcesuper/add-income-source', 'incomesourcesuper/update-income-source'])],
             'handlersuper' => ['label' => '消费经手人', 'url' => ['handlersuper/index'], 'active' => in_array($route, ['handlersuper/index', 'handlersuper/add-handler', 'handlersuper/update-handler'])],
             'categorysuper' => ['label' => '消费分类', 'url' => ['categorysuper/index'], 'active' => in_array($route, ['categorysuper/index', 'categorysuper/add-category', 'categorysuper/update-category'])],
         ],

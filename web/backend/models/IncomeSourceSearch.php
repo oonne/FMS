@@ -3,22 +3,22 @@
 namespace backend\models;
 
 use yii\data\ActiveDataProvider;
-use common\models\Handler;
+use common\models\IncomeSource;
 
-class HandlerSearch extends Handler
+class IncomeSourceSearch extends IncomeSource
 {
 
     public function rules()
     {
         // only fields in rules() are searchable
         return [
-            [['handler_name'], 'safe']
+            [['income_source'], 'safe']
         ];
     }
 
     public function search($params)
     {
-        $query = Handler::find();
+        $query = IncomeSource::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -31,7 +31,7 @@ class HandlerSearch extends Handler
         }
 
         // adjust the query by adding the filters
-        $query->andFilterWhere(['like', 'handler_name', $this->handler_name]);
+        $query->andFilterWhere(['like', 'income_source', $this->income_source]);
 
         return $dataProvider;
     }

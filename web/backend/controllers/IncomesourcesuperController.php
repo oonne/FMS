@@ -7,14 +7,14 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\web\BadRequestHttpException;
-use common\models\Handler;
-use backend\models\HandlerSearch;
-use common\models\Expenses;
+use backend\models\IncomeSourceSearch;
+use common\models\IncomeSource;
+use common\models\Income;
 
 /**
- * Handlersuper controller
+ * Incomesourcesuper controller
  */
-class HandlersuperController extends Controller
+class IncomesourcesuperController extends Controller
 {
 
     public function behaviors()
@@ -34,7 +34,7 @@ class HandlersuperController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new HandlerSearch();
+        $searchModel = new IncomeSourceSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->get());
 
         return $this->render('index', [
@@ -43,9 +43,9 @@ class HandlersuperController extends Controller
         ]);
     }
 
-    public function actionAddHandler()
+    public function actionAddIncomeSource()
     {
-        $model = new Handler();
+        $model = new IncomeSource();
         $model->setScenario('creation');
 
         if ($model->load(Yii::$app->request->post())) {
@@ -65,9 +65,9 @@ class HandlersuperController extends Controller
         ]);
     }
 
-    public function actionUpdateHandler($id)
+    public function actionUpdateIncomeSource($id)
     {
-        $model = Handler::findOne($id);
+        $model = IncomeSource::findOne($id);
 
         if (!$model) {
             throw new BadRequestHttpException('请求错误！');
@@ -90,17 +90,17 @@ class HandlersuperController extends Controller
         ]);
     }
 
-   public function actionDeleteHandler($id)
+   public function actionDeleteIncomeSource($id)
     {
-        $model = Handler::findOne($id);
+        $model = IncomeSource::findOne($id);
 
         if (!$model) {
             throw new BadRequestHttpException('请求错误！');
         }
 
-        $expenses = Expenses::find()->where(['expenses_handler' => $id])->exists();
-        if ( $expenses ) {
-            Yii::$app->session->setFlash('danger', '该经手人有消费记录，不能删除！');
+        $income = Income::find()->where(['income_handler' => $id])->exists();
+        if ( $income ) {
+            Yii::$app->session->setFlash('danger', '该收录来源有存钱记录，不能删除！');
         } else {
             $transaction = Yii::$app->db->beginTransaction();
             try {

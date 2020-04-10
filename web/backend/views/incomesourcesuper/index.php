@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use yii\widgets\Pjax;
 use backend\widgets\Alert;
 
-$this->title = '经手人管理';
+$this->title = '收入来源管理';
 ?>
 <div class="row">
     <div class="col-lg-12">
@@ -13,7 +13,7 @@ $this->title = '经手人管理';
     </div>
 </div>
 <p>
-    <?= Html::a('增加经手人', ['handlersuper/add-handler'], ['class' => 'btn btn-success']) ?>
+    <?= Html::a('增加收入来源', ['incomesourcesuper/add-income-source'], ['class' => 'btn btn-success']) ?>
 </p>
 <div class="row">
     <div class="col-lg-12">
@@ -37,7 +37,7 @@ $this->title = '经手人管理';
                     'headerOptions' => ['class' => 'col-md-1'],
                 ],
                 [
-                    'attribute' => 'handler_name',
+                    'attribute' => 'income_source',
                     'headerOptions' => ['class' => 'col-md-2'],
                     'filterInputOptions' => ['class' => 'form-control input-sm'],
                 ],
@@ -48,10 +48,10 @@ $this->title = '经手人管理';
                     'template' => '{update} {delete}',
                     'buttons' => [
                         'update' => function ($url, $model, $key) {
-                            return Html::a('修改', ['update-handler', 'id' => $key], ['class' => 'btn btn-warning btn-xs']);
+                            return Html::a('修改', ['update-income-source', 'id' => $key], ['class' => 'btn btn-warning btn-xs']);
                         },
                         'delete' => function ($url, $model, $key) {
-                            return Html::a('删除', ['delete-handler', 'id' => $key], ['class' => 'btn btn-danger btn-xs', 'data-confirm' => Yii::t('yii', '确定删除“'.$model->handler_name.'”吗？')]);
+                            return Html::a('删除', ['delete-income-source', 'id' => $key], ['class' => 'btn btn-danger btn-xs', 'data-confirm' => Yii::t('yii', '确定删除“'.$model->income_source.'”吗？')]);
                         },
                     ]
                 ]
