@@ -55,7 +55,7 @@ $this->title = '存钱记录';
                     'filterInputOptions' => ['class' => 'form-control input-sm'],
                     'headerOptions' => ['class' => 'col-md-1'],
                     'value' => function ($model, $key, $index, $column) {
-                        return $model->income_source ? $model->income_source->income_source : Html::tag('b', '收入来源错误', ['class' => 'text-danger']);
+                        return $model->source ? $model->source->income_source : Html::tag('b', '收入来源错误', ['class' => 'text-danger']);
                     }
                 ],
                 [

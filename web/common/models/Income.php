@@ -65,7 +65,7 @@ class Income extends ActiveRecord
         ];
     }
 
-    public function getIncomeSource()
+    public function getSource()
     {
         return $this->hasOne(IncomeSource::className(), ['id' => 'income_source']);
     }

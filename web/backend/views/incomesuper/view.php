@@ -19,7 +19,7 @@ $this->title = $model->income_item;
         [
             'attribute' => 'income_source',
             'format' => 'html',
-            'value' => $model->income_source ? $model->income_source->income_source : Html::tag('b', '收入来源错误', ['class' => 'text-danger']),
+            'value' => $model->source ? $model->source->income_source : Html::tag('b', '收入来源错误', ['class' => 'text-danger']),
         ],
         [
             'attribute' => 'income_remark',

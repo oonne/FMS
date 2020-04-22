@@ -93,7 +93,7 @@ class IncomeController extends Controller
         $handler = IncomeSource::find()
             ->select(['id', 'income_source'])
             ->all();
-        $extra['handler'] = $handler;
+        $extra['source'] = $handler;
 
         return [
             'Ret' => 0,
@@ -163,7 +163,7 @@ class IncomeController extends Controller
         $recycleContent = '<p>项目：'. $model->income_item .'</p>';
         $recycleContent = $recycleContent .'<p>金额：'. $model->income_money .'</p>';
         $recycleContent = $recycleContent .'<p>时间：'. $model->income_date .'</p>';
-        $recycleContent = $recycleContent .'<p>收入来源：'. ($model->income_source ? $model->income_source->income_source : '收入来源错误' ) .'</p>';
+        $recycleContent = $recycleContent .'<p>收入来源：'. ($model->source ? $model->source->income_source : '收入来源错误' ) .'</p>';
         $recycleContent = $recycleContent .'<p>备注：'. $model->income_remark .'</p>';
         $recycle = new Recycle();
         $recycle->recycle_type = Recycle::TYPE_INCOME;
