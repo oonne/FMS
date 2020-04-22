@@ -6,7 +6,6 @@ use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use common\models\Users;
-use frontend\models\LoginForm;
 
 class UserController extends Controller
 {
