@@ -3,12 +3,24 @@
     "pages/index/index"
   ],
   "window": {
-    "backgroundColor": "#ffffff",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTextStyle": "black",
     "navigationBarTitleText": "FMS",
-    "navigationBarTextStyle": "black"
+    "navigationStyle": "default",
+    "backgroundColor": "#EBEBEB",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50
   },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false,
   "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "usingComponents": {},
+  "style": "v2",
+  "useExtendedLib": {
+    "weui": true
+  }
 }
