@@ -1,7 +1,6 @@
-// 云函数模板
-// 部署：在 cloud-functions/login 文件夹右击选择 “上传并部署”
-
 const cloud = require('wx-server-sdk')
+const rp = require('request-promise')
+const api = require('config/api')
 
 // 初始化 cloud
 cloud.init({
@@ -10,27 +9,33 @@ cloud.init({
 })
 
 /**
- * 这个示例将经自动鉴权过的小程序用户 openid 返回给小程序端
- * 
- * event 参数包含小程序端调用传入的 data
+ * 登录接口
+ * 查询openid是否在user表中，如果是则返回token，如果不是则未登录
+ * 调用方式：数据预加载
  * 
  */
-exports.main = (event, context) => {
-  console.log(event)
-  console.log(context)
-
-  // 可执行其他自定义逻辑
-  // console.log 的内容可以在云开发云函数调用日志查看
-
-  // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）等信息
+exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
-
-  return {
-    event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
-    env: wxContext.ENV,
+  console.log('调用登录接口', wxContext)
+  let options = {
+    url: api.login,
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: {
+      openid: wxContext.OPENID,
+    },
+    json: true,
+    timeout: 3600,
   }
+  return await rp(options)
+                 .then(function (res) {
+                    return {
+                      code: 0,
+                      res: res,
+                      wxContext: wxContext,
+                    }
+                  })
 }
-
