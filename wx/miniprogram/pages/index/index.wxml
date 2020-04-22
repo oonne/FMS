@@ -1,2 +1,0 @@
-<button bind:tap="h1">http1.1</button>
-<button bind:tap="h2">http2</button>
