@@ -17,7 +17,7 @@ class IncomeSearch extends Income
     public function rules()
     {
         return [
-            [['income_money', 'income_item', 'income_handler', 'income_remark', 'dateRange'], 'safe'],
+            [['income_money', 'income_item', 'income_source', 'income_remark', 'dateRange'], 'safe'],
         ];
     }
 
@@ -47,7 +47,7 @@ class IncomeSearch extends Income
         }
 
         $query->andFilterWhere(['like', 'income_item', $this->income_item])
-              ->andFilterWhere(['income_handler' => $this->income_handler])
+              ->andFilterWhere(['income_source' => $this->income_source])
               ->andFilterWhere(['like', 'income_remark', $this->income_remark]);
 
         $data['dataProvider'] = $dataProvider;
@@ -74,8 +74,8 @@ class IncomeSearch extends Income
         if ($this->income_item) {
             $query->andWhere(['like', 'income_item', $this->income_item]);
         }
-        if ($this->income_handler) {
-            $query->andWhere(['income_handler' => $this->income_handler]);
+        if ($this->income_source) {
+            $query->andWhere(['income_source' => $this->income_source]);
         }
         if ($this->income_remark) {
             $query->andWhere(['like', 'income_remark', $this->income_remark]);

@@ -17,9 +17,9 @@ $this->title = $model->income_item;
         'income_money',
         'income_date',
         [
-            'attribute' => 'income_handler',
+            'attribute' => 'income_source',
             'format' => 'html',
-            'value' => $model->handler ? $model->handler->handler_name : Html::tag('b', '经手人错误', ['class' => 'text-danger']),
+            'value' => $model->income_source ? $model->income_source->income_source : Html::tag('b', '收入来源错误', ['class' => 'text-danger']),
         ],
         [
             'attribute' => 'income_remark',

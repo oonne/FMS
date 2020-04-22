@@ -114,7 +114,7 @@ class IncomesuperController extends Controller
         $recycleContent = '<p>项目：'. $model->income_item .'</p>';
         $recycleContent = $recycleContent .'<p>金额：'. $model->income_money .'</p>';
         $recycleContent = $recycleContent .'<p>时间：'. $model->income_date .'</p>';
-        $recycleContent = $recycleContent .'<p>经手人：'. ($model->handler ? $model->handler->handler_name : '经手人错误' ) .'</p>';
+        $recycleContent = $recycleContent .'<p>经手人：'. ($model->income_source ? $model->income_source->income_source : '经手人错误' ) .'</p>';
         $recycleContent = $recycleContent .'<p>备注：'. $model->income_remark .'</p>';
         $recycle = new Recycle();
         $recycle->recycle_type = Recycle::TYPE_INCOME;

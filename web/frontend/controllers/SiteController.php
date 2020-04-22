@@ -33,7 +33,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return [];
+        return 'FMS API';
     }
 
 }

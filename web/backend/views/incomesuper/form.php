@@ -30,7 +30,7 @@ $this->title = $model->isNewRecord ? '添加' : '修改';
             'clientOptions' => ['firstDay' => 0],
             'dateFormat' => 'yyyy-MM-dd'
         ]) ?>
-        <?= $form->field($model, 'income_handler')->dropDownList(Handler::getKeyValuePairs()) ?>
+        <?= $form->field($model, 'income_source')->dropDownList(Handler::getKeyValuePairs()) ?>
         <?= $form->field($model, 'income_remark') ?>
         <div class="form-group">
             <?= Html::submitButton('保存', ['class' => 'btn btn-success']) ?>

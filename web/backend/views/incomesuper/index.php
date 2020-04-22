@@ -6,7 +6,7 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 use kartik\daterange\DateRangePicker;
 use backend\widgets\Alert;
-use common\models\Handler;
+use common\models\IncomeSource;
 
 $this->title = '存钱记录';
 ?>
@@ -50,12 +50,12 @@ $this->title = '存钱记录';
                     'filterInputOptions' => ['class' => 'form-control input-sm'],
                 ],
                 [
-                    'attribute' => 'income_handler',
-                    'filter' => Handler::getKeyValuePairs(),
+                    'attribute' => 'income_source',
+                    'filter' => IncomeSource::getKeyValuePairs(),
                     'filterInputOptions' => ['class' => 'form-control input-sm'],
                     'headerOptions' => ['class' => 'col-md-1'],
                     'value' => function ($model, $key, $index, $column) {
-                        return $model->handler ? $model->handler->handler_name : Html::tag('b', '经手人错误', ['class' => 'text-danger']);
+                        return $model->income_source ? $model->income_source->income_source : Html::tag('b', '收入来源错误', ['class' => 'text-danger']);
                     }
                 ],
                 [
