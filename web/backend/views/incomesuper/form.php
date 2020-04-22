@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use common\models\Handler;
+use common\models\IncomeSource;
 use yii\jui\DatePicker;
 use backend\widgets\Alert;
 
@@ -30,7 +30,7 @@ $this->title = $model->isNewRecord ? '添加' : '修改';
             'clientOptions' => ['firstDay' => 0],
             'dateFormat' => 'yyyy-MM-dd'
         ]) ?>
-        <?= $form->field($model, 'income_source')->dropDownList(Handler::getKeyValuePairs()) ?>
+        <?= $form->field($model, 'income_source')->dropDownList(IncomeSource::getKeyValuePairs()) ?>
         <?= $form->field($model, 'income_remark') ?>
         <div class="form-group">
             <?= Html::submitButton('保存', ['class' => 'btn btn-success']) ?>
