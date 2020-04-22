@@ -24,7 +24,7 @@ class UserController extends Controller
         $wx = Yii::$app->request->post();
         $openid = $wx['openid'];
 
-        $user = Users::find($id)
+        $user = Users::find()
                     ->where(['openid' => $openid])
                     ->one();
 
