@@ -8,7 +8,7 @@ use yii\web\BadRequestHttpException;
 use common\models\Expenses;
 use common\models\Income;
 use common\models\Category;
-use common\models\Handler;
+use common\models\IncomeSource;
 
 class ChartController extends Controller
 {
@@ -107,20 +107,20 @@ class ChartController extends Controller
             }
         }
 
-        $incomeHandler = [];
-        $incomeHandlerQuery = Income::find()->select([
-                'handler' => 'income_handler',
+        $incomeSource = [];
+        $incomeSourceQuery = Income::find()->select([
+                'source' => 'income_source',
                 'value' => 'SUM(income_money)'])
-            ->groupBy(['income_handler']);
-        $incomeHandlerResult = $incomeHandlerQuery->createCommand()->queryAll();
+            ->groupBy(['income_source']);
+        $incomeSourceResult = $incomeSourceQuery->createCommand()->queryAll();
 
-        $handlerList = Handler::getHandlerList();
-        foreach ($handlerList as $handler) {
-            foreach ($incomeHandlerResult as $item)  
+        $sourceList = IncomeSource::getSourceList();
+        foreach ($sourceList as $source) {
+            foreach ($incomeSourceResult as $item)  
             {
-                if($item['handler'] == $handler['id']){
-                    array_push($incomeHandler, [
-                        'name' => $handler['handler_name'],
+                if($item['source'] == $source['id']){
+                    array_push($incomeSource, [
+                        'name' => $source['income_source'],
                         'value' => $item['value']
                     ]);
                 }
@@ -135,7 +135,7 @@ class ChartController extends Controller
             'monthlyExpenses' => $monthlyExpenses,
             'monthlyBalance' => $monthlyBalance,
             'expensesCategory' => $expensesCategory,
-            'incomeHandler' => $incomeHandler
+            'incomeSource' => $incomeSource
         ]);
     }
     

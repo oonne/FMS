@@ -98,7 +98,7 @@ class IncomesourcesuperController extends Controller
             throw new BadRequestHttpException('请求错误！');
         }
 
-        $income = Income::find()->where(['income_handler' => $id])->exists();
+        $income = Income::find()->where(['income_source' => $id])->exists();
         if ( $income ) {
             Yii::$app->session->setFlash('danger', '该收录来源有存钱记录，不能删除！');
         } else {

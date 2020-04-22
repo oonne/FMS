@@ -214,7 +214,7 @@ $this->title = '统计图表';
                         'name' => '金额',
                         'type' => 'pie',
                         'radius' => ['66%', '80%'],
-                        'data' => $incomeHandler
+                        'data' => $incomeSource
                     ]
                 ]
             ]
