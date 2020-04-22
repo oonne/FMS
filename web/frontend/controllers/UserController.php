@@ -5,7 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
-use common\models\Users;
+use common\models\User;
 
 class UserController extends Controller
 {
@@ -24,7 +24,7 @@ class UserController extends Controller
         $wx = Yii::$app->request->post();
         $openid = $wx['openid'];
 
-        $user = Users::find()
+        $user = User::find()
                     ->where(['openid' => $openid])
                     ->one();
 
