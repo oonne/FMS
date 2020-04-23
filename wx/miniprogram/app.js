@@ -4,6 +4,7 @@ App({
   globalData: {
     openId: '',
     token: '',
+    name: '',
   },
   onLaunch: function (options) {
     console.log("-------------Launch", config.version, options)
