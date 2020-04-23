@@ -3,11 +3,11 @@
     "pages/main/index"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarBackgroundColor": "#C2C2C2",
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "FMS",
     "navigationStyle": "default",
-    "backgroundColor": "#EBEBEB",
+    "backgroundColor": "#C2C2C2",
     "backgroundTextStyle": "dark",
     "enablePullDownRefresh": true,
     "onReachBottomDistance": 50
