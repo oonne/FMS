@@ -34,13 +34,18 @@ class UserController extends Controller
             Yii::$app->user->loginByAccessToken($user->access_token);
             $data = $user->toArray(['username', 'nickname', 'access_token']);
             return [
-                'Ret' => 0,
-                'Data' => $data
+                'code' => 0,
+                'data' => $data
             ];
         } else {
             Yii::warning('查无此人！');
             return [
-                'Ret' => 1,
+                'code' => 1,
+                'data' => [
+                    'username' => '',
+                    'nickname' => '',
+                    'access_token' => ''
+                ]
             ];
 
         }

@@ -31,15 +31,9 @@ Page({
   fetchLogin () {
     wx.cloud.callFunction({
       name: 'login',
-      success: res => {
-        wx.hideNavigationBarLoading()
-        this.loginSuccess(res.result)
-      },
-      fail: err => {
-        wx.hideNavigationBarLoading()
-        // 登录失败
-        // TODO
-      }
+    }).then(res=>{
+      wx.hideNavigationBarLoading()
+      this.loginSuccess(res.result)
     })
   },
 

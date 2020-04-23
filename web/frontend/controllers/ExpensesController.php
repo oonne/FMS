@@ -4,7 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\filters\auth\HeaderParamAuth;
-use yii\data\ActiveDataProvider;
+use yii\data\ActivedataProvider;
 use common\models\Expenses;
 use common\models\Category;
 use common\models\Handler;
@@ -36,7 +36,7 @@ class ExpensesController extends Controller
         $query = Expenses::find()
             ->select(['id', 'expenses_date', 'expenses_item', 'expenses_money', 'expenses_category', 'expenses_handler', 'expenses_remark']);
 
-        $dataProvider = new ActiveDataProvider([
+        $dataProvider = new ActivedataProvider([
             'query' => $query,
             'sort' => ['defaultOrder' => ['expenses_date' => SORT_DESC, 'updated_at' => SORT_DESC]]
         ]);
@@ -63,10 +63,10 @@ class ExpensesController extends Controller
         $extra['handler'] = $handler;
 
         return [
-            'Ret' => 0,
-            'Data' => $data,
-            'Meta' => $meta,
-            'Extra' => $extra,
+            'code' => 0,
+            'data' => $data,
+            'meta' => $meta,
+            'extra' => $extra,
         ];
     }
 
@@ -80,21 +80,21 @@ class ExpensesController extends Controller
                 $model->last_editor = Yii::$app->user->id;
                 if ($model->save(false)) {
                     return [
-                        'Ret' => 0,
-                        'Data' => $model->toArray(['id', 'expenses_category', 'expenses_date', 'expenses_handler', 'expenses_item', 'expenses_money', 'expenses_remark'])
+                        'code' => 0,
+                        'data' => $model->toArray(['id', 'expenses_category', 'expenses_date', 'expenses_handler', 'expenses_item', 'expenses_money', 'expenses_remark'])
                     ];
                 } else {
                     return [
-                        'Ret' => 3,
-                        'Data' => [
+                        'code' => 3,
+                        'data' => [
                             'errors' => ['添加失败']
                         ]
                     ];
                 }
             } else {
                 return [
-                    'Ret' => 2,
-                    'Data' => [
+                    'code' => 2,
+                    'data' => [
                         'errors' => ['填写信息有误']
                     ]
                 ];                
@@ -102,8 +102,8 @@ class ExpensesController extends Controller
         }
 
         return [
-            'Ret' => 1,
-            'Data' => [
+            'code' => 1,
+            'data' => [
                 'errors' => ['加载失败']
             ]
         ];
@@ -117,8 +117,8 @@ class ExpensesController extends Controller
 
         if (!$model) {
             return [
-                'Ret' => 1,
-                'Data' => [
+                'code' => 1,
+                'data' => [
                     'errors' => ['查无记录']
                 ]
             ];
@@ -128,13 +128,13 @@ class ExpensesController extends Controller
             $model->last_editor = Yii::$app->user->id;
             if ($model->save(false)) {
                 return [
-                    'Ret' => 0,
-                    'Data' => '保存成功',
+                    'code' => 0,
+                    'data' => '保存成功',
                 ];
             } else {
                 return [
-                    'Ret' => 2,
-                    'Data' => [
+                    'code' => 2,
+                    'data' => [
                         'errors' => ['保存失败']
                     ]
                 ];
@@ -142,8 +142,8 @@ class ExpensesController extends Controller
         }
 
         return [
-            'Ret' => 3,
-            'Data' => [
+            'code' => 3,
+            'data' => [
                 'errors' => ['更新失败']
             ]
         ];
@@ -157,8 +157,8 @@ class ExpensesController extends Controller
 
         if (!$model) {
             return [
-                'Ret' => 1,
-                'Data' => [
+                'code' => 1,
+                'data' => [
                     'errors' => ['查无记录']
                 ]
             ];
@@ -181,14 +181,14 @@ class ExpensesController extends Controller
                 }
                 $transaction->commit();
                 return [
-                    'Ret' => 0,
-                    'Data' => '删除成功'
+                    'code' => 0,
+                    'data' => '删除成功'
                 ];
             } catch (\Exception $e) {
                 $transaction->rollBack();
                 return [
                     'Ret' => 3,
-                    'Data' => [
+                    'data' => [
                         'errors' => [$e->getMessage()]
                     ]
                 ];
@@ -197,7 +197,7 @@ class ExpensesController extends Controller
             $transaction->rollBack();
             return [
                 'Ret' => 2,
-                'Data' => [
+                'data' => [
                     'errors' => ['回收失败']
                 ]
             ];

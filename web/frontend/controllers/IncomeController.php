@@ -4,7 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\filters\auth\HeaderParamAuth;
-use yii\data\ActiveDataProvider;
+use yii\data\ActivedataProvider;
 use common\models\Income;
 use common\models\IncomeSource;
 use common\models\Recycle;
@@ -40,21 +40,21 @@ class IncomeController extends Controller
                 $model->last_editor = Yii::$app->user->id;
                 if ($model->save(false)) {
                     return [
-                        'Ret' => 0,
-                        'Data' => $model->toArray(['id', 'income_date', 'income_source', 'income_item', 'income_money', 'income_remark'])
+                        'code' => 0,
+                        'data' => $model->toArray(['id', 'income_date', 'income_source', 'income_item', 'income_money', 'income_remark'])
                     ];
                 } else {
                     return [
-                        'Ret' => 3,
-                        'Data' => [
+                        'code' => 3,
+                        'data' => [
                             'errors' => ['添加失败']
                         ]
                     ];
                 }
             } else {
                 return [
-                    'Ret' => 2,
-                    'Data' => [
+                    'code' => 2,
+                    'data' => [
                         'errors' => ['填写信息有误']
                     ]
                 ];                
@@ -62,8 +62,8 @@ class IncomeController extends Controller
         }
 
         return [
-            'Ret' => 1,
-            'Data' => [
+            'code' => 1,
+            'data' => [
                 'errors' => ['加载失败']
             ]
         ];
@@ -74,7 +74,7 @@ class IncomeController extends Controller
         $query = Income::find()
             ->select(['id', 'income_item', 'income_date', 'income_money', 'income_source', 'income_remark']);
 
-        $dataProvider = new ActiveDataProvider([
+        $dataProvider = new ActivedataProvider([
             'query' => $query,
             'sort' => ['defaultOrder' => ['income_date' => SORT_DESC, 'updated_at' => SORT_DESC]]
         ]);
@@ -96,10 +96,10 @@ class IncomeController extends Controller
         $extra['source'] = $handler;
 
         return [
-            'Ret' => 0,
-            'Data' => $data,
-            'Meta' => $meta,
-            'Extra' => $extra,
+            'code' => 0,
+            'data' => $data,
+            'meta' => $meta,
+            'extra' => $extra,
         ];
     }
 
@@ -112,8 +112,8 @@ class IncomeController extends Controller
 
         if (!$model) {
             return [
-                'Ret' => 1,
-                'Data' => [
+                'code' => 1,
+                'data' => [
                     'errors' => ['查无记录']
                 ]
             ];
@@ -123,13 +123,13 @@ class IncomeController extends Controller
             $model->last_editor = Yii::$app->user->id;
             if ($model->save(false)) {
                 return [
-                    'Ret' => 0,
-                    'Data' => '保存成功',
+                    'code' => 0,
+                    'data' => '保存成功',
                 ];
             } else {
                 return [
-                    'Ret' => 2,
-                    'Data' => [
+                    'code' => 2,
+                    'data' => [
                         'errors' => ['保存失败']
                     ]
                 ];
@@ -137,8 +137,8 @@ class IncomeController extends Controller
         }
 
         return [
-            'Ret' => 3,
-            'Data' => [
+            'code' => 3,
+            'data' => [
                 'errors' => ['更新失败']
             ]
         ];
@@ -152,8 +152,8 @@ class IncomeController extends Controller
 
         if (!$model) {
             return [
-                'Ret' => 1,
-                'Data' => [
+                'code' => 1,
+                'data' => [
                     'errors' => ['查无记录']
                 ]
             ];
@@ -175,14 +175,14 @@ class IncomeController extends Controller
                 }
                 $transaction->commit();
                 return [
-                    'Ret' => 0,
-                    'Data' => '删除成功'
+                    'code' => 0,
+                    'data' => '删除成功'
                 ];
             } catch (\Exception $e) {
                 $transaction->rollBack();
                 return [
-                    'Ret' => 3,
-                    'Data' => [
+                    'code' => 3,
+                    'data' => [
                         'errors' => [$e->getMessage()]
                     ]
                 ];
@@ -190,8 +190,8 @@ class IncomeController extends Controller
         }else{
             $transaction->rollBack();
             return [
-                'Ret' => 2,
-                'Data' => [
+                'code' => 2,
+                'data' => [
                     'errors' => ['回收失败']
                 ]
             ];
