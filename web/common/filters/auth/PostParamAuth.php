@@ -7,7 +7,7 @@ use yii\filters\auth\AuthMethod;
 /**
  * PostParamAuth is an action filter that supports the authentication based on the access token passed through a post parameter.
  *
- * @author Cosmo <daixianceng@gmail.com>
+ * @author JAY
  */
 class PostParamAuth extends AuthMethod
 {

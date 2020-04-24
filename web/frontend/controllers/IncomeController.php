@@ -30,6 +30,40 @@ class IncomeController extends Controller
         ];
     }
 
+    public function actionIndex()
+    {
+        $query = Income::find()
+            ->select(['id', 'income_item', 'income_date', 'income_money', 'income_source', 'income_remark']);
+
+        $dataProvider = new ActivedataProvider([
+            'query' => $query,
+            'sort' => ['defaultOrder' => ['income_date' => SORT_DESC, 'updated_at' => SORT_DESC]]
+        ]);
+
+        $data = $dataProvider->getModels();
+        $meta = [
+            'totalCount' => $dataProvider->pagination->totalCount,
+            'pageCount' => $dataProvider->pagination->getPageCount(),
+            'currentPage' => $dataProvider->pagination->getPage() + 1,
+            'perPage' => $dataProvider->pagination->getPageSize(),
+        ];
+
+        // IncomeSource
+        $extra = [];
+
+        $handler = IncomeSource::find()
+            ->select(['id', 'income_source'])
+            ->all();
+        $extra['source'] = $handler;
+
+        return [
+            'code' => 0,
+            'data' => $data,
+            'meta' => $meta,
+            'extra' => $extra,
+        ];
+    }
+
     public function actionAdd()
     {
         $model = new Income();
@@ -68,41 +102,6 @@ class IncomeController extends Controller
             ]
         ];
     }
-
-    public function actionIndex()
-    {
-        $query = Income::find()
-            ->select(['id', 'income_item', 'income_date', 'income_money', 'income_source', 'income_remark']);
-
-        $dataProvider = new ActivedataProvider([
-            'query' => $query,
-            'sort' => ['defaultOrder' => ['income_date' => SORT_DESC, 'updated_at' => SORT_DESC]]
-        ]);
-
-        $data = $dataProvider->getModels();
-        $meta = [
-            'totalCount' => $dataProvider->pagination->totalCount,
-            'pageCount' => $dataProvider->pagination->getPageCount(),
-            'currentPage' => $dataProvider->pagination->getPage() + 1,
-            'perPage' => $dataProvider->pagination->getPageSize(),
-        ];
-
-        // IncomeSource
-        $extra = [];
-
-        $handler = IncomeSource::find()
-            ->select(['id', 'income_source'])
-            ->all();
-        $extra['source'] = $handler;
-
-        return [
-            'code' => 0,
-            'data' => $data,
-            'meta' => $meta,
-            'extra' => $extra,
-        ];
-    }
-
 
     public function actionUpdate()
     {

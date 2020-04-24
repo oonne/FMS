@@ -1,4 +1,5 @@
 import config from '../../config/config'
+import { income, expenses } from '../../intercept/index'
 
 Page({
   data: {
@@ -104,5 +105,7 @@ Page({
       return
     }
     // TODO
+    income.index({page: 1})
+    // expenses.index({page: 1})
   },
 })

@@ -9,7 +9,7 @@ const request = (opt) => {
       url: config.reqApi+opt.url,
       data: opt.data,
       header: {
-        'kp-request-id': getApp().globalData.token,
+        'X-Auth-Token': getApp().globalData.token,
       },
       timeout: 10000,
       method: opt.method,

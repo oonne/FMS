@@ -7,7 +7,7 @@ use yii\filters\auth\AuthMethod;
 /**
  * HeaderParamAuth is an action filter that supports the authentication based on the access token passed through a header parameter.
  *
- * @author Cosmo <daixianceng@gmail.com>
+ * @author JAY
  */
 class HeaderParamAuth extends AuthMethod
 {
