@@ -22,7 +22,7 @@ $this->title = '统计图表';
     </div>
     <div class="fms-summary-item fms-summary-balance">
         <div class="fms-summary-attr">结余</div>
-        <div class="fms-summary-num"><?= ($incomeTotal-$expensesTotal) ?></div>
+        <div class="fms-summary-num"><?= number_format($incomeTotal-$expensesTotal, 2) ?></div>
     </div>
 </div>
 

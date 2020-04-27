@@ -7,7 +7,7 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'accounting-frontend',
+    'id' => 'fms-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',

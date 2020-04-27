@@ -83,7 +83,7 @@ class ChartController extends Controller
                         ->where(['<=', "DATE_FORMAT(expenses_date, '%Y-%m')", $m]);
             $monthlyExpensesTotalResult = $monthlyExpensesTotalQuery->createCommand()->queryOne();
 
-            $monthlyBalance[] = $monthlyIncomeTotalResult['summary'] - $monthlyExpensesTotalResult['summary'];
+            $monthlyBalance[] = round($monthlyIncomeTotalResult['summary']-$monthlyExpensesTotalResult['summary'], 2);
         }
 
         // proportion data
