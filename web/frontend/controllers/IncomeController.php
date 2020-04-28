@@ -4,7 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\filters\HeaderParamAuth;
-use yii\data\ActivedataProvider;
+use Yii\data\ActivedataProvider;
 use common\models\Income;
 use common\models\IncomeSource;
 use common\models\Recycle;
