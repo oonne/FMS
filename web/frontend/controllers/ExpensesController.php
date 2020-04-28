@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
-use common\filters\auth\HeaderParamAuth;
+use common\filters\HeaderParamAuth;
 use yii\data\ActivedataProvider;
 use common\models\Expenses;
 use common\models\Category;

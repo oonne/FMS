@@ -29,7 +29,7 @@ class UserController extends Controller
                     ->one();
 
         if ($user) {
-            $user->generateAccessToken();
+            // $user->generateAccessToken();
             $user->save(false);
             Yii::$app->user->loginByAccessToken($user->access_token);
             $data = $user->toArray(['username', 'nickname', 'access_token']);

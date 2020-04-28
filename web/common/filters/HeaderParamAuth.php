@@ -1,27 +1,27 @@
 <?php
 
-namespace common\filters\auth;
+namespace common\filters;
 
 use yii\filters\auth\AuthMethod;
 
 /**
- * PostParamAuth is an action filter that supports the authentication based on the access token passed through a post parameter.
+ * HeaderParamAuth is an action filter that supports the authentication based on the access token passed through a header parameter.
  *
  * @author JAY
  */
-class PostParamAuth extends AuthMethod
+class HeaderParamAuth extends AuthMethod
 {
     /**
      * @var string the parameter name for passing the access token
      */
-    public $tokenParam = 'access-token';
+    public $tokenParam = 'X-Auth-Token';
 
     /**
      * @inheritdoc
      */
     public function authenticate($user, $request, $response)
     {
-        $accessToken = $request->post($this->tokenParam);
+        $accessToken = $request->headers->get($this->tokenParam);
         if (is_string($accessToken)) {
             $identity = $user->loginByAccessToken($accessToken, get_class($this));
             if ($identity !== null) {
