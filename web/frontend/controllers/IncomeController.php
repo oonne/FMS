@@ -4,7 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\filters\HeaderParamAuth;
-use Yii\data\ActivedataProvider;
+use yii\data\ActiveDataProvider;
 use common\models\Income;
 use common\models\IncomeSource;
 use common\models\Recycle;
@@ -35,7 +35,7 @@ class IncomeController extends Controller
         $query = Income::find()
             ->select(['id', 'income_item', 'income_date', 'income_money', 'income_source', 'income_remark']);
 
-        $dataProvider = new ActivedataProvider([
+        $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => ['defaultOrder' => ['income_date' => SORT_DESC, 'updated_at' => SORT_DESC]]
         ]);

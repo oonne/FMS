@@ -4,7 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\filters\HeaderParamAuth;
-use Yii\data\ActivedataProvider;
+use yii\data\ActiveDataProvider;
 use common\models\Expenses;
 use common\models\Category;
 use common\models\Handler;
@@ -36,7 +36,7 @@ class ExpensesController extends Controller
         $query = Expenses::find()
             ->select(['id', 'expenses_date', 'expenses_item', 'expenses_money', 'expenses_category', 'expenses_handler', 'expenses_remark']);
 
-        $dataProvider = new ActivedataProvider([
+        $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => ['defaultOrder' => ['expenses_date' => SORT_DESC, 'updated_at' => SORT_DESC]]
         ]);
