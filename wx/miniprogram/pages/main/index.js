@@ -1,5 +1,4 @@
-import config from '../../config/config'
-import { income, expenses } from '../../intercept/index'
+import route from '../../config/route'
 
 Page({
   data: {
@@ -104,8 +103,17 @@ Page({
     if (!getApp().globalData.token) {
       return
     }
-    // TODO
-    income.index({page: 1})
-    // expenses.index({page: 1})
+  },
+
+  /**
+   * 跳转到指定页面
+   */
+  toPage(e) {
+    let page = e.currentTarget.dataset.page
+    if (page) {
+      wx.navigateTo({
+        url: route[page],
+      })
+    }
   },
 })
