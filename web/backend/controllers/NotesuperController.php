@@ -4,6 +4,7 @@ namespace backend\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 use yii\web\BadRequestHttpException;
 use common\models\Note;
 use backend\models\NoteSearch;
