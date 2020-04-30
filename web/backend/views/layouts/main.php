@@ -24,7 +24,7 @@ $menu = [
         'label' => '<svg class="icon" aria-hidden="true"><use xlink:href="#icon-bill"></use></svg>  账单',
         'url' => '#',
         'items' => [
-            'incomesuper' => ['label' => '存钱记录', 'url' => ['incomesuper/index'], 'active' => in_array($route, ['incomesuper/index', 'incomesuper/add-income', 'incomesuper/update-income', 'incomesuper/view-income'])],
+            'incomesuper' => ['label' => '收入记录', 'url' => ['incomesuper/index'], 'active' => in_array($route, ['incomesuper/index', 'incomesuper/add-income', 'incomesuper/update-income', 'incomesuper/view-income'])],
             'expensessuper' => ['label' => '消费记录', 'url' => ['expensessuper/index'], 'active' => in_array($route, ['expensessuper/index', 'expensessuper/add-expenses', 'expensessuper/update-expenses', 'expensessuper/view-expenses'])],
             'chart' => ['label' => '统计图表', 'url' => ['chart/index'], 'active' => in_array($route, ['chart/index'])],
         ]

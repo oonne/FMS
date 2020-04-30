@@ -197,7 +197,7 @@ $this->title = '统计图表';
         ]) ?>
     </div>
     <div class="text-center col-md-6">
-        <h3>存钱统计</h3>
+        <h3>收入统计</h3>
         <?= ECharts::widget([
             'responsive' => true,
             'options' => [

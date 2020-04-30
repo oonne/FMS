@@ -9,4 +9,11 @@ export default {
   CLOUD_NOTES: '/pages/cloud_notes/index',
   CLOUD_NOTES_DETAIL: '/pages/cloud_notes/detail',
 
+  
+  /*消费*/
+  /*收入*/
+  /*日记*/
+  /*记事本*/
+  /*密码*/
+
 }

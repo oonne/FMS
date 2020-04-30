@@ -86,6 +86,35 @@ class NotesuperController extends Controller
         ]);
     }
 
+    public function actionSaveNote($id)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $model = Note::findOne($id);
+        if (!$model) {
+            throw new BadRequestHttpException('请求错误！');
+        }
+
+        $form = Yii::$app->request->post();
+        if ($model->load(Yii::$app->request->post(), '')) {
+            if ($model->validate()) {
+                $model->last_editor = Yii::$app->user->id;
+                if ($model->save(false)) {
+                    return [
+                        'status' => 'success',
+                    ];
+                } else {
+                    return [
+                        'status' => 'fail',
+                        'data' => [
+                            'message' => '保存出错！'
+                        ]
+                    ];
+                }
+            }
+        }
+    }
+
     public function actionViewNote($id)
     {
         $model = Note::findOne($id);

@@ -8,7 +8,7 @@ use kartik\daterange\DateRangePicker;
 use backend\widgets\Alert;
 use common\models\IncomeSource;
 
-$this->title = '存钱记录';
+$this->title = '收入记录';
 ?>
 <div class="row">
     <div class="col-lg-12">
