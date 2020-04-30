@@ -2,6 +2,14 @@
   "pages": [
     "pages/main/index"
   ],
+  "subPackages": [
+    {
+      "root": "pages/cloud_notes",
+      "pages": [
+        "index"
+      ]
+    },
+  ],
   "window": {
     "navigationBarBackgroundColor": "#EBEBEB",
     "navigationBarTextStyle": "black",

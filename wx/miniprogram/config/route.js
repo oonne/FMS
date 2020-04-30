@@ -2,7 +2,11 @@
  * 页面路由
  */
 export default {
-  /*主包页面*/
-  //落地页
+  //首页
   INDEX: '/pages/main/index',
+
+  /*云记事本*/
+  CLOUD_NOTES: '/pages/cloud_notes/index',
+  CLOUD_NOTES_DETAIL: '/pages/cloud_notes/detail',
+
 }

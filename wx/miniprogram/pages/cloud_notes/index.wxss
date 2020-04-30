@@ -1,0 +1,42 @@
+.index{
+  padding: 16rpx;
+}
+.block{
+  position: relative;
+  border-radius: 8rpx;
+  margin-bottom: 16rpx;
+  height: 168rpx;
+}
+.name{
+  position: absolute;
+  right: 32rpx;
+  top: 32rpx;
+  color: #fff;
+  font-size: 36rpx;
+}
+.title{
+  position: absolute;
+  right: 32rpx;
+  top: 32rpx;
+  color: #fff;
+  font-size: 88rpx;
+  font-family: "number";
+}
+.title-intro{
+  position: absolute;
+  right: 132rpx;
+  top: 32rpx;
+  color: #fff;
+  font-size: 22rpx;
+}
+.content{
+  position: absolute;
+  right: 32rpx;
+  top: 132rpx;
+  color: #fff;
+  font-size: 22rpx;
+}
+
+.cloud-notes{
+  background-color: #f69;
+}
