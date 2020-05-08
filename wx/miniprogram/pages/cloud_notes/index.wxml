@@ -1,8 +1,6 @@
 <view class="index">
-  <view class="block cloud-notes" bind:tap="toPage" data-page="CLOUD_NOTES">
-    <view class="name">云记事本</view>
-    <view class="title">3</view>
-    <view class="title-intro">总文件</view>
-    <view class="content">最近修改：</view>
+  <view class="item" data-id="0">
+    <view class="title">标题</view>
+    <view class="content">内容</view>
   </view>
 </view>
