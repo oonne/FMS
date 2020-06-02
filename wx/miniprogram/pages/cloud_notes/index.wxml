@@ -4,3 +4,5 @@
     <view class="content">内容</view>
   </view>
 </view>
+
+<add-btn page="CLOUD_NOTES_DETAIL" />

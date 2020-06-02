@@ -23,7 +23,8 @@
 			"outputPath": ""
 		},
 		"bundle": true,
-		"useCompilerModule": false
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"appid": "wx4759a03f15153ba9",
 	"projectname": "FMS",

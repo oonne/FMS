@@ -5,13 +5,19 @@
   position: relative;
   border-radius: 8rpx;
   margin-bottom: 16rpx;
-  height: 168rpx;
+  height: 160rpx;
   background-color: #fff;
-  padding: 16rpx 12rpx;
+  padding: 12rpx 16rpx;
+  overflow: hidden;
 }
 .title{
   color: #333;
+  font-size: 36rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .content{
   color: #666;
+  font-size: 24rpx;
 }

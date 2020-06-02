@@ -7,15 +7,12 @@ Page({
   onShow () {
     this.fetchData()
   },
+  fetchData(){
 
+  },
   toItem(e) {
-    let page = e.currentTarget.dataset.id
-
-    
-    if (page) {
-      wx.navigateTo({
-        url: route[page],
-      })
-    }
+    wx.navigateTo({
+      url: route[page],
+    })
   },
 })

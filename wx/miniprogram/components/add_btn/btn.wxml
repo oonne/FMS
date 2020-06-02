@@ -1,0 +1,1 @@
+<view class="add-btn {{color}}" catch:tap="onAdd"></view>

@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "云记事本",
-  "usingComponents": {}
+  "usingComponents": {
+    "add-btn": "../../components/add_btn/btn"
+  }
 }
