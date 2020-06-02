@@ -6,11 +6,11 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\web\BadRequestHttpException;
-use common\models\Diary;
-use backend\models\DiarySearch;
+use common\models\Password;
+use backend\models\PasswordSearch;
 use common\models\Recycle;
 
-class DiarysuperController extends Controller
+class PasswordsuperController extends Controller
 {
     
     public function behaviors()
@@ -30,7 +30,7 @@ class DiarysuperController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new DiarySearch();
+        $searchModel = new PasswordSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -39,9 +39,9 @@ class DiarysuperController extends Controller
         ]);
     }
 
-    public function actionAddDiary()
+    public function actionAddPassword()
     {
-        $model = new Diary();
+        $model = new Password();
         $model->setScenario('creation');
 
         if ($model->load(Yii::$app->request->post())) {
@@ -61,9 +61,9 @@ class DiarysuperController extends Controller
         ]);
     }
 
-    public function actionUpdateDiary($id)
+    public function actionUpdatePassword($id)
     {
-        $model = Diary::findOne($id);
+        $model = Password::findOne($id);
 
         if (!$model) {
             Yii::$app->session->setFlash('danger', '查无记录');
@@ -87,11 +87,11 @@ class DiarysuperController extends Controller
         ]);
     }
 
-    public function actionSaveDiary($id)
+    public function actionSavePassword($id)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        $model = Diary::findOne($id);
+        $model = Password::findOne($id);
         if (!$model) {
             throw new BadRequestHttpException('请求错误！');
         }
@@ -116,9 +116,9 @@ class DiarysuperController extends Controller
         }
     }
 
-    public function actionViewDiary($id)
+    public function actionViewPassword($id)
     {
-        $model = Diary::findOne($id);
+        $model = Password::findOne($id);
 
         if (!$model) {
             Yii::$app->session->setFlash('danger', '查无记录');
@@ -130,9 +130,9 @@ class DiarysuperController extends Controller
         ]);
     }
 
-    public function actionDeleteDiary($id)
+    public function actionDeletePassword($id)
     {
-        $model = Diary::findOne($id);
+        $model = Password::findOne($id);
 
         if (!$model) {
             Yii::$app->session->setFlash('danger', '查无记录');
@@ -140,9 +140,12 @@ class DiarysuperController extends Controller
         }
 
         $transaction = Yii::$app->db->beginTransaction();
-        $recycleContent = $model->diary_date ."  \n". $model->diary_content;
+        $recycleContent = '<p>密码项：'. $model->password_item .'</p>';
+        $recycleContent = $recycleContent .'<p>用户名：'. $model->user_name .'</p>';
+        $recycleContent = $recycleContent .'<p>密码：'. $model->password .'</p>';
+        $recycleContent = $recycleContent .'<p>备注：'. $model->password_remark .'</p>';
         $recycle = new Recycle();
-        $recycle->recycle_type = Recycle::TYPE_DIARY;
+        $recycle->recycle_type = Recycle::TYPE_PASSWORD;
         $recycle->recycle_content = $recycleContent;
         $recycle->last_editor = Yii::$app->user->id;
         if($recycle->validate()&&$recycle->save(false)){

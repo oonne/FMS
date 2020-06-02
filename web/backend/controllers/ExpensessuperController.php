@@ -120,6 +120,7 @@ class ExpensessuperController extends Controller
         $recycle = new Recycle();
         $recycle->recycle_type = Recycle::TYPE_EXPENSES;
         $recycle->recycle_content = $recycleContent;
+        $recycle->last_editor = Yii::$app->user->id;
         if($recycle->validate()&&$recycle->save(false)){
             try {
                 if (!$model->delete()) {

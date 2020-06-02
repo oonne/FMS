@@ -35,6 +35,7 @@ $menu = [
         'items' => [
             'notesuper' => ['label' => '记事本', 'url' => ['notesuper/index'], 'active' => in_array($route, ['notesuper/index', 'notesuper/add-note', 'notesuper/update-note', 'notesuper/view-note'])],
             'diarysuper' => ['label' => '日记', 'url' => ['diarysuper/index'], 'active' => in_array($route, ['diarysuper/index', 'diarysuper/add-diary', 'diarysuper/update-diary', 'diarysuper/view-diary'])],
+            'passwordsuper' => ['label' => '密码', 'url' => ['passwordsuper/index'], 'active' => in_array($route, ['passwordsuper/index', 'passwordsuper/add-password', 'passwordsuper/update-password', 'passwordsuper/view-password'])],
         ]
     ],
 ];

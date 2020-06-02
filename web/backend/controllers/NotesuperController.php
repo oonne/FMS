@@ -144,6 +144,7 @@ class NotesuperController extends Controller
         $recycle = new Recycle();
         $recycle->recycle_type = Recycle::TYPE_NOTE;
         $recycle->recycle_content = $recycleContent;
+        $recycle->last_editor = Yii::$app->user->id;
         if($recycle->validate()&&$recycle->save(false)){
             try {
                 if (!$model->delete()) {

@@ -6,8 +6,9 @@ class Recycle extends ActiveRecord
 {
     const TYPE_EXPENSES  = 'Expenses';
     const TYPE_INCOME    = 'Income';
-    const TYPE_NOTE    = 'Note';
-    const TYPE_DIARY    = 'Diary';
+    const TYPE_NOTE      = 'Note';
+    const TYPE_DIARY     = 'Diary';
+    const TYPE_PASSWORD  = 'Password';
 
     private static $_typeList;
 
@@ -38,7 +39,7 @@ class Recycle extends ActiveRecord
             [
                 ['recycle_type'],
                 'in',
-                'range' => [self::TYPE_EXPENSES, self::TYPE_INCOME, self::TYPE_NOTE, self::TYPE_DIARY]
+                'range' => [self::TYPE_EXPENSES, self::TYPE_INCOME, self::TYPE_NOTE, self::TYPE_DIARY, self::TYPE_PASSWORD]
             ],
             [['recycle_content'], 'string'],
         ];
@@ -68,8 +69,9 @@ class Recycle extends ActiveRecord
             self::$_typeList = [
                 self::TYPE_EXPENSES  => '消费',
                 self::TYPE_INCOME    => '收入',
-                self::TYPE_NOTE    => '记事本',
-                self::TYPE_DIARY    => '日记',
+                self::TYPE_NOTE      => '记事本',
+                self::TYPE_DIARY     => '日记',
+                self::TYPE_PASSWORD  => '密码',
             ];
         }
 
