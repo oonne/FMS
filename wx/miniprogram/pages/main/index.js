@@ -6,7 +6,7 @@ Page({
     //云笔记
     cloudNotes: {
       count: 0, //总数量
-      lastNote: {}, //最后更新的笔记
+      lastNote: '', //最后更新的笔记
     },
     // 消费
     expenses: {
@@ -17,15 +17,19 @@ Page({
     income: {
       monthly: 0, //当月统计
     },
+    //日记
+    diary: {
+      date: '2020-06-20', //当前日期
+      content: '', //今日日记
+    },
     //记事本
     notes: {
       count: 0, //总数量
-      lastNote: {}, //最后更新的笔记
+      lastNote: '', //最后更新的笔记
     },
-    //日记
-    diary: {
-      date: '', //当前日期
-      content: '今日暂无内容', //今日日记
+    //密码
+    password: {
+      count: 0, //总数量
     },
   },
   onLoad () {
@@ -103,6 +107,7 @@ Page({
     if (!getApp().globalData.token) {
       return
     }
+    // TODO
   },
 
   /**

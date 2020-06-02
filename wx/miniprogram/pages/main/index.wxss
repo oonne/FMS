@@ -1,42 +1,70 @@
 .index{
   padding: 16rpx;
 }
+.row{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+  height: 168rpx;
+}
 .block{
   position: relative;
   border-radius: 8rpx;
-  margin-bottom: 16rpx;
   height: 168rpx;
 }
 .name{
   position: absolute;
-  right: 32rpx;
-  top: 32rpx;
+  left: 20rpx;
+  top: 16rpx;
   color: #fff;
-  font-size: 36rpx;
+  font-size: 20rpx;
 }
 .title{
   position: absolute;
-  right: 32rpx;
-  top: 32rpx;
+  right: 36rpx;
+  top: 20rpx;
   color: #fff;
   font-size: 88rpx;
   font-family: "number";
 }
 .title-intro{
-  position: absolute;
-  right: 132rpx;
-  top: 32rpx;
+  margin-left: 6rpx;
   color: #fff;
-  font-size: 22rpx;
+  font-size: 20rpx;
 }
 .content{
   position: absolute;
-  right: 32rpx;
+  left: 36rpx;
   top: 132rpx;
   color: #fff;
   font-size: 22rpx;
 }
 
 .cloud-notes{
-  background-color: #f69;
+  background-color: #999;
+  width: 100%;
+}
+.expenses{
+  background-color: #999;
+  width: 61%;
+}
+.income{
+  background-color: #999;
+  width: 37%;
+}
+.diary{
+  background-color: #999;
+  width: 100%;
+}
+.diary .title {
+  font-size: 60rpx;
+  top: 48rpx;
+}
+.notes{
+  background-color: #999;
+  width: 61%;
+}
+.password{
+  background-color: #999;
+  width: 37%;
 }

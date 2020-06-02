@@ -22,7 +22,8 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"bundle": true
+		"bundle": true,
+		"useCompilerModule": false
 	},
 	"appid": "wx4759a03f15153ba9",
 	"projectname": "FMS",
