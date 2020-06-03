@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "云记事本",
   "usingComponents": {
+    "mp-loading": "/miniprogram_npm/weui-miniprogram/loading/loading",
     "add-btn": "../../components/add_btn/btn"
   }
 }

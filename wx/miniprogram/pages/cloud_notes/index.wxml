@@ -1,8 +1,9 @@
 <view class="index">
-  <view class="item" data-id="0">
-    <view class="title">标题</view>
-    <view class="content">内容</view>
+  <view wx:for="{{list}}" wx:key="_id" class="item" data-id="0">
+    <view class="title">{{item.title}}</view>
+    <view class="content">{{item.content}}</view>
   </view>
+  <mp-loading wx:if="{{loading}}" type="circle"></mp-loading>
 </view>
 
 <add-btn page="CLOUD_NOTES_DETAIL" />

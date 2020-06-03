@@ -36,6 +36,7 @@ Page({
       })
       return
     }
+
     if (this.data.isAdd) {
       this.add({title, content})
     } else {
@@ -52,7 +53,12 @@ Page({
     const notes = db.collection('notes')
     
     notes.add({
-      data: params
+      data: {
+        title: params.title,
+        content: params.content,
+        created_at: new Date(),
+        updated_at: new Date(),
+      }
     }).then(()=>{
       wx.navigateBack()
     })

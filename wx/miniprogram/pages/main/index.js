@@ -100,7 +100,18 @@ Page({
     if (!getApp().globalData.openId) {
       return
     }
-    // TODO
+    const db = wx.cloud.database()
+    const notes = db.collection('notes')
+
+    notes.where({
+      _openid: getApp().globalData.openId,
+    })
+    .count()
+    .then(res=>{
+      this.setData({
+        'cloudNotes.count': res.total
+      })
+    })
   },
   // 获取其他数据（Api）
   getDatas () {
