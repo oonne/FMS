@@ -1,5 +1,3 @@
-import route from '../../config/route'
-
 Page({
   data: {
     isAdd: true,
@@ -8,12 +6,12 @@ Page({
     content: '',
   },
   onLoad(options){
-    if (options.id) {
+    if (options._id) {
       this.setData({
         isAdd: false,
-        id: options.id,
-        title: options.title,
-        content: options.content,
+        id: options._id,
+        title: decodeURIComponent(options.title),
+        content: decodeURIComponent(options.content),
       })
     }
   },
@@ -71,10 +69,28 @@ Page({
   update(params){
     const db = wx.cloud.database()
     const notes = db.collection('notes')
+
+    notes.doc(this.data.id)
+    .update({
+      data: {
+        title: params.title,
+        content: params.content,
+        updated_at: new Date(),
+      }
+    }).then(()=>{
+      wx.navigateBack()
+    })
   },
   /*
    * 删除
    */
   delete(){
+    const db = wx.cloud.database()
+    const notes = db.collection('notes')
+
+    notes.doc(this.data.id)
+    .remove().then(()=>{
+      wx.navigateBack()
+    })
   },
 })

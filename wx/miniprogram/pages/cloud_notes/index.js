@@ -1,5 +1,6 @@
 import config from '../../config/config'
 import route from '../../config/route'
+import {obj2url} from '../../utils/util'
 
 Page({
   data: {
@@ -80,15 +81,19 @@ Page({
     .get()
     .then(res=>{
       this.setData({
-        list: list.concat(res.data),
+        list: page===1 ? res.data : list.concat(res.data),
         page: page,
         loading: false,
       })
+      wx.stopPullDownRefresh()
     })
   },
-  toItem(e) {
+  toDetail(e) {
+    const id = e.currentTarget.dataset.id
+    const notes = this.data.list.find(item=>item._id===id)
+
     wx.navigateTo({
-      url: route[page],
+      url: `${route.CLOUD_NOTES_DETAIL}?${obj2url(notes)}`,
     })
   },
 })

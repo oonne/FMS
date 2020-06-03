@@ -35,7 +35,7 @@ Component({
     },
     onAdd(){
       wx.navigateTo({
-        url: route[this.properties.page]
+        url: route[this.properties.page],
       })
     },
   }
