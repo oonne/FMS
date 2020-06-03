@@ -6,7 +6,8 @@
     {
       "root": "pages/cloud_notes",
       "pages": [
-        "index"
+        "index",
+        "detail"
       ]
     }
   ],
@@ -30,5 +31,12 @@
   "style": "v2",
   "useExtendedLib": {
     "weui": true
+  },
+  "preloadRule": {
+    "pages/main/index": {
+      "packages": [
+        "pages/cloud_notes"
+      ]
+    }
   }
 }
