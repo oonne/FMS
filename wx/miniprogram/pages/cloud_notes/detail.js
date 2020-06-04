@@ -54,8 +54,8 @@ Page({
       data: {
         title: params.title,
         content: params.content,
-        created_at: new Date(),
-        updated_at: new Date(),
+        created_at: db.serverDate(),
+        updated_at: db.serverDate(),
       }
     }).then(()=>{
       wx.navigateBack()
@@ -75,7 +75,7 @@ Page({
       data: {
         title: params.title,
         content: params.content,
-        updated_at: new Date(),
+        updated_at: db.serverDate(),
       }
     }).then(()=>{
       wx.navigateBack()
