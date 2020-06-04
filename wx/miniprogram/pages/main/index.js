@@ -1,4 +1,5 @@
 import route from '../../config/route'
+import {formatDate} from '../../utils/util'
 
 Page({
   data: {
@@ -11,7 +12,6 @@ Page({
     // 消费
     expenses: {
       daily: 0, //当日统计
-      monthly: 0, //当月统计
     },
     // 收入
     income: {
@@ -19,13 +19,11 @@ Page({
     },
     //日记
     diary: {
-      date: '2020-06-20', //当前日期
-      content: '', //今日日记
+      date: formatDate(new Date(), 'yyyy-MM-dd'), //当前日期
     },
     //记事本
     notes: {
       count: 0, //总数量
-      lastNote: '', //最后更新的笔记
     },
     //密码
     password: {
