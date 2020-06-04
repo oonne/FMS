@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
-use common\filters\auth\HeaderParamAuth;
+use common\filters\HeaderParamAuth;
 use yii\data\ActiveDataProvider;
 use common\models\Expenses;
 use common\models\Income;
@@ -30,6 +30,13 @@ class StatisticsController extends Controller
 
     public function actionIndex()
     {
+
+
+
+
+
+
+        
         // sum data
         $incomeQuery = Income::find()
                     ->select(['summary' => 'SUM(income_money)']);
@@ -109,9 +116,9 @@ class StatisticsController extends Controller
 
         $incomeHandler = [];
         $incomeHandlerQuery = Income::find()->select([
-                'handler' => 'income_handler',
+                'handler' => 'income_source',
                 'value' => 'SUM(income_money)'])
-            ->groupBy(['income_handler']);
+            ->groupBy(['income_source']);
         $incomeHandlerResult = $incomeHandlerQuery->createCommand()->queryAll();
 
         $handlerList = Handler::getHandlerList();

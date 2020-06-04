@@ -1,5 +1,6 @@
 import route from '../../config/route'
-import {formatDate} from '../../utils/util'
+import { formatDate } from '../../utils/util'
+import { statistics } from '../../intercept/index'
 
 Page({
   data: {
@@ -15,7 +16,6 @@ Page({
     },
     // 收入
     income: {
-      monthly: 0, //当月统计
     },
     //日记
     diary: {
@@ -116,7 +116,9 @@ Page({
     if (!getApp().globalData.token) {
       return
     }
-    // TODO
+    statistics.index().then(res=>{
+      console.log(res)
+    })
   },
 
   /**
