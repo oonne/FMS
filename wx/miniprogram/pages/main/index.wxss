@@ -22,9 +22,9 @@
 .title{
   position: absolute;
   right: 36rpx;
-  top: 20rpx;
+  top: 68rpx;
   color: #fff;
-  font-size: 88rpx;
+  font-size: 60rpx;
   font-family: "number";
 }
 .title-intro{
@@ -41,30 +41,26 @@
 }
 
 .cloud-notes{
-  background-color: #999;
+  background-color: rgb(212, 147, 187);
   width: 100%;
-}
-.expenses{
-  background-color: #999;
-  width: 61%;
-}
-.income{
-  background-color: #999;
-  width: 37%;
-}
-.diary{
-  background-color: #999;
-  width: 100%;
-}
-.diary .title {
-  font-size: 60rpx;
-  top: 48rpx;
 }
 .notes{
-  background-color: #999;
+  background-color: rgb(207, 138, 144);
   width: 61%;
 }
 .password{
-  background-color: #999;
+  background-color: rgb(134, 117, 141);
   width: 37%;
+}
+.diary{
+  background-color: rgb(0, 214, 203);
+  width: 100%;
+}
+.income{
+  background-color: rgb(108, 128, 172);
+  width: 37%;
+}
+.expenses{
+  background-color: rgb(94, 196, 205);
+  width: 61%;
 }

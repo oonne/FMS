@@ -11,10 +11,10 @@
   content: '';
   display: block;
   position: absolute;
-  width: 68rpx;
+  width: 56rpx;
   height: 6rpx;
   top: 40rpx;
-  left: 10rpx;
+  left: 16rpx;
   background-color: #fff;
 }
 .add-btn::after{
@@ -22,8 +22,8 @@
   display: block;
   position: absolute;
   width: 6rpx;
-  height: 68rpx;
-  top: 10rpx;
+  height: 56rpx;
+  top: 16rpx;
   left: 40rpx;
   background-color: #fff;
 }
