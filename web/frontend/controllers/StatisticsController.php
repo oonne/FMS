@@ -31,7 +31,7 @@ class StatisticsController extends Controller
     {
         // 最近一个月的消费
         $dailyExpensesQuery = Expenses::find()
-                    ->where(['>=', "DATE_FORMAT(expenses_date, '%Y-%m-%d')", date("Y-m-d", strtotime("-1 day"))])
+                    ->where(["DATE_FORMAT(expenses_date, '%Y-%m-%d')" => date("Y-m-d")])
                     ->select(['summary' => 'SUM(expenses_money)']);
         $dailyExpenses = ($dailyExpensesQuery->createCommand()->queryOne())['summary'];
 
