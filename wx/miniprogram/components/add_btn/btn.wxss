@@ -13,9 +13,10 @@
   position: absolute;
   width: 56rpx;
   height: 6rpx;
-  top: 40rpx;
+  top: 41rpx;
   left: 16rpx;
   background-color: #fff;
+  border-radius: 10rpx;
 }
 .add-btn::after{
   content: '';
@@ -24,8 +25,9 @@
   width: 6rpx;
   height: 56rpx;
   top: 16rpx;
-  left: 40rpx;
+  left: 41rpx;
   background-color: #fff;
+  border-radius: 10rpx;
 }
 
 .cloud-notes{
