@@ -28,6 +28,21 @@ Component({
         case "CLOUD_NOTES_DETAIL":
           color = 'cloud-notes'
           break
+        case "NOTES_DETAIL":
+          color = 'notes'
+          break
+        case "PASSWORD_DETAIL":
+          color = 'password'
+          break
+        case "DIARY_DETAIL":
+          color = 'diary'
+          break
+        case "INCOME_DETAIL":
+          color = 'income'
+          break
+        case "EXPENSES_DETAIL":
+          color = 'expenses'
+          break
       }
       this.setData({
         color: color

@@ -29,20 +29,20 @@
 }
 
 .cloud-notes{
-  background-color: #999;
-}
-.expenses{
-  background-color: #999;
-}
-.income{
-  background-color: #999;
-}
-.diary{
-  background-color: #999;
+  background-color: rgb(212, 147, 187);
 }
 .notes{
-  background-color: #999;
+  background-color: rgb(207, 138, 144);
 }
 .password{
-  background-color: #999;
+  background-color: rgb(134, 117, 141);
+}
+.diary{
+  background-color: rgb(0, 214, 203);
+}
+.expenses{
+  background-color: rgb(108, 128, 172);
+}
+.income{
+  background-color: rgb(94, 196, 205);
 }

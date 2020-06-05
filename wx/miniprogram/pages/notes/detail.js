@@ -77,10 +77,19 @@ Page({
    * 删除
    */
   delete(){
-    note.delete({
-      id: this.data.id
-    }).then(res=>{
-      wx.navigateBack()
+    wx.showModal({
+      title: `确认删除${this.data.title}?`,
+      confirmText: '删除',
+      confirmColor: '#F00',
+      success: res=>{
+        if (res.confirm) {
+          note.delete({
+            id: this.data.id
+          }).then(res=>{
+            wx.navigateBack()
+          })
+        }
+      }
     })
   },
 })

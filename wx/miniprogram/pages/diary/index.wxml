@@ -6,4 +6,4 @@
   <mp-loading wx:if="{{loading}}" type="circle"></mp-loading>
 </view>
 
-<add-btn page="NOTES_DETAIL" bind:add="initData"/>
+<add-btn page="DIAYR_DETAIL" bind:add="initData"/>

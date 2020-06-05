@@ -88,12 +88,21 @@ Page({
    * 删除
    */
   delete(){
-    const db = wx.cloud.database()
-    const notes = db.collection('notes')
+    wx.showModal({
+      title: `确认删除${this.data.title}?`,
+      confirmText: '删除',
+      confirmColor: '#F00',
+      success: res=>{
+        if (res.confirm) {
+          const db = wx.cloud.database()
+          const notes = db.collection('notes')
 
-    notes.doc(this.data.id)
-    .remove().then(()=>{
-      wx.navigateBack()
+          notes.doc(this.data.id)
+          .remove().then(()=>{
+            wx.navigateBack()
+          })
+        }
+      }
     })
   },
 })

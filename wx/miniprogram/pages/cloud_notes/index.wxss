@@ -21,3 +21,8 @@
   color: #666;
   font-size: 24rpx;
 }
+.empty{
+  color: #999;
+  margin: 400rpx auto;
+  text-align: center;
+}
