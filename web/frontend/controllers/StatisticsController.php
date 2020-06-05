@@ -30,10 +30,10 @@ class StatisticsController extends Controller
     public function actionIndex()
     {
         // 最近一个月的消费
-        $monthlyExpensesQuery = Expenses::find()
-                    ->where(['>=', "DATE_FORMAT(expenses_date, '%Y-%m-%d')", date("Y-m-d", strtotime("-1 month"))])
+        $dailyExpensesQuery = Expenses::find()
+                    ->where(['>=', "DATE_FORMAT(expenses_date, '%Y-%m-%d')", date("Y-m-d", strtotime("-1 day"))])
                     ->select(['summary' => 'SUM(expenses_money)']);
-        $monthlyExpenses = ($monthlyExpensesQuery->createCommand()->queryOne())['summary'];
+        $dailyExpenses = ($dailyExpensesQuery->createCommand()->queryOne())['summary'];
 
         // 记事本总数
         $noteCount = Note::find()->count();
@@ -44,7 +44,7 @@ class StatisticsController extends Controller
         return [
             'Ret' => 0,
             'Data' => [
-                'monthlyExpenses' => $monthlyExpenses,
+                'dailyExpenses' => $dailyExpenses,
                 'noteCount' => $noteCount,
                 'passwordCount' => $passwordCount,
             ],

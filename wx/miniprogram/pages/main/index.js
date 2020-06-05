@@ -117,7 +117,12 @@ Page({
       return
     }
     statistics.index().then(res=>{
-      console.log(res)
+      const {dailyExpenses, noteCount, passwordCount} = res.Data
+      this.setData({
+        'expenses.daily': dailyExpenses || 0,
+        'notes.count': noteCount || 0,
+        'password.count': passwordCount || 0,
+      })
     })
   },
 
