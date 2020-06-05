@@ -1,4 +1,4 @@
-import { note } from '../../intercept/index'
+import { password } from '../../intercept/index'
 
 Page({
   data: {
@@ -14,9 +14,6 @@ Page({
         id: options.id,
         title: decodeURIComponent(options.note_title),
         content: decodeURIComponent(options.note_content),
-      })
-      wx.setNavigationBarTitle({
-        title: decodeURIComponent(options.note_title)
       })
     }
   },

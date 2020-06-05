@@ -11,7 +11,21 @@
       ]
     },
     {
+      "root": "pages/diary",
+      "pages": [
+        "index",
+        "detail"
+      ]
+    },
+    {
       "root": "pages/notes",
+      "pages": [
+        "index",
+        "detail"
+      ]
+    },
+    {
+      "root": "pages/password",
       "pages": [
         "index",
         "detail"
@@ -43,7 +57,9 @@
     "pages/main/index": {
       "packages": [
         "pages/cloud_notes",
-        "pages/notes"
+        "pages/diary",
+        "pages/notes",
+        "pages/password"
       ]
     }
   }

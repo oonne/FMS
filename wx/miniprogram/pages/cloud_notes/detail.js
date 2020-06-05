@@ -13,6 +13,9 @@ Page({
         title: decodeURIComponent(options.title),
         content: decodeURIComponent(options.content),
       })
+      wx.setNavigationBarTitle({
+        title: decodeURIComponent(options.title)
+      })
     }
   },
   /*

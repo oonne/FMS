@@ -1,0 +1,19 @@
+<form bindsubmit="save">
+  <view class="cells">
+    <view class="cell cell-input">
+      <view class="cell-attr">密码项</view>
+      <input name="title" placeholder="密码项" value="{{password_item}}"/>
+    </view>
+    <view class="cell cell-input">
+      <view class="cell-attr">用户名</view>
+      <input name="title" placeholder="用户名" value="{{user_name}}"/>
+    </view>
+    <view class="cell cell-input">
+      <view class="cell-attr">密码</view>
+      <input name="title" placeholder="密码" value="{{password}}"/>
+    </view>
+  </view>
+
+  <button class="form-submit-btn" form-type="submit">保存</button>
+  <button wx:if="{{!isAdd}}" class="form-submit-btn" bind:tap="delete">删除</button>
+</form>
