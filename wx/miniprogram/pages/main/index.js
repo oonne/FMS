@@ -83,6 +83,10 @@ Page({
         auth: true,
       })
     }
+    //测试直接跳转
+    wx.navigateTo({
+      url: route.NOTES,
+    })
   },
 
   /**

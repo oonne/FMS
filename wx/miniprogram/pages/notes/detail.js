@@ -1,3 +1,5 @@
+import { note } from '../../intercept/index'
+
 Page({
   data: {
     isAdd: true,
@@ -6,12 +8,12 @@ Page({
     content: '',
   },
   onLoad(options){
-    if (options._id) {
+    if (options.id) {
       this.setData({
         isAdd: false,
-        id: options._id,
-        title: decodeURIComponent(options.title),
-        content: decodeURIComponent(options.content),
+        id: options.id,
+        title: decodeURIComponent(options.note_title),
+        content: decodeURIComponent(options.note_content),
       })
     }
   },
@@ -47,17 +49,10 @@ Page({
    * @params {object} params.content 内容
    */
   add(params){
-    const db = wx.cloud.database()
-    const notes = db.collection('notes')
-    
-    notes.add({
-      data: {
-        title: params.title,
-        content: params.content,
-        created_at: db.serverDate(),
-        updated_at: db.serverDate(),
-      }
-    }).then(()=>{
+    note.add({
+      note_title: params.title,
+      note_content: params.content,
+    }).then(res=>{
       wx.navigateBack()
     })
   },
@@ -67,17 +62,11 @@ Page({
    * @params {object} params.content 内容
    */
   update(params){
-    const db = wx.cloud.database()
-    const notes = db.collection('notes')
-
-    notes.doc(this.data.id)
-    .update({
-      data: {
-        title: params.title,
-        content: params.content,
-        updated_at: db.serverDate(),
-      }
-    }).then(()=>{
+    note.update({
+      id: this.data.id,
+      note_title: params.title,
+      note_content: params.content,
+    }).then(res=>{
       wx.navigateBack()
     })
   },
@@ -85,11 +74,9 @@ Page({
    * 删除
    */
   delete(){
-    const db = wx.cloud.database()
-    const notes = db.collection('notes')
-
-    notes.doc(this.data.id)
-    .remove().then(()=>{
+    note.delete({
+      id: this.data.id
+    }).then(res=>{
       wx.navigateBack()
     })
   },
