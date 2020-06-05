@@ -111,7 +111,7 @@ Page({
       })
     })
   },
-  // 获取其他数据（Api）
+  // 获取统计数据（Api）
   getDatas () {
     if (!getApp().globalData.token) {
       return
@@ -124,6 +124,7 @@ Page({
         'password.count': passwordCount || 0,
       })
     })
+    wx.stopPullDownRefresh()
   },
 
   /**

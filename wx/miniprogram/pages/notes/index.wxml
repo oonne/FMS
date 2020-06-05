@@ -1,0 +1,9 @@
+<view class="index">
+  <view wx:for="{{list}}" wx:key="_id" class="item" data-id="{{item._id}}" bind:tap="toDetail">
+    <view class="title">{{item.title}}</view>
+    <view class="content">{{item.content}}</view>
+  </view>
+  <mp-loading wx:if="{{loading}}" type="circle"></mp-loading>
+</view>
+
+<add-btn page="CLOUD_NOTES_DETAIL" bind:add="initData"/>

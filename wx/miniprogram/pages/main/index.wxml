@@ -6,26 +6,26 @@
     </view>
   </view>
   <view class="row" wx:if="{{auth}}">
-    <view class="block expenses" bind:tap="toPage" data-page="CLOUD_NOTES">
+    <view class="block expenses" bind:tap="toPage" data-page="EXPENSES">
       <view class="name">消费</view>
       <view class="title"><text class="title-intro">今日</text>{{expenses.daily}}<text class="title-intro">元</text></view>
     </view>
-    <view class="block income" bind:tap="toPage" data-page="CLOUD_NOTES">
+    <view class="block income" bind:tap="toPage" data-page="INCOME">
       <view class="name">收入</view>
     </view>
   </view>
   <view class="row" wx:if="{{auth}}">
-    <view class="block diary" bind:tap="toPage" data-page="CLOUD_NOTES">
+    <view class="block diary" bind:tap="toPage" data-page="DIARY">
       <view class="name">日记</view>
       <view class="title">{{diary.date}}</view>
     </view>
   </view>
   <view class="row" wx:if="{{auth}}">
-    <view class="block notes" bind:tap="toPage" data-page="CLOUD_NOTES">
+    <view class="block notes" bind:tap="toPage" data-page="NOTES">
       <view class="name">记事本</view>
       <view class="title">{{notes.count}}<text class="title-intro">篇</text></view>
     </view>
-    <view class="block password" bind:tap="toPage" data-page="CLOUD_NOTES">
+    <view class="block password" bind:tap="toPage" data-page="PASSWORD">
       <view class="name">密码</view>
       <view class="title">{{password.count}}<text class="title-intro">条</text></view>
     </view>

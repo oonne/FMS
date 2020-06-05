@@ -9,6 +9,13 @@
         "index",
         "detail"
       ]
+    },
+    {
+      "root": "pages/notes",
+      "pages": [
+        "index",
+        "detail"
+      ]
     }
   ],
   "window": {
@@ -35,7 +42,8 @@
   "preloadRule": {
     "pages/main/index": {
       "packages": [
-        "pages/cloud_notes"
+        "pages/cloud_notes",
+        "pages/notes"
       ]
     }
   }
