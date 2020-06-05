@@ -2,9 +2,15 @@
 import income from './modules/income'
 import expenses from './modules/expenses'
 import statistics from './modules/statistics'
+import note from './modules/note'
+import diary from './modules/diary'
+import password from './modules/note'
 
 export {
+  statistics,
   income,
   expenses,
-  statistics,
+  note,
+  diary,
+  password,
 }

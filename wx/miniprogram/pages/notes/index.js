@@ -1,6 +1,8 @@
 import config from '../../config/config'
 import route from '../../config/route'
 import {obj2url} from '../../utils/util'
+import { note } from '../../intercept/index'
+
 
 Page({
   data: {

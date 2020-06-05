@@ -5,11 +5,10 @@ namespace frontend\controllers;
 use Yii;
 use common\filters\HeaderParamAuth;
 use yii\data\ActiveDataProvider;
-use common\models\Income;
-use common\models\IncomeSource;
+use common\models\Note;
 use common\models\Recycle;
 
-class IncomeController extends Controller
+class NoteController extends Controller
 {
     public function behaviors()
     {
@@ -32,12 +31,12 @@ class IncomeController extends Controller
 
     public function actionIndex()
     {
-        $query = Income::find()
-            ->select(['id', 'income_item', 'income_date', 'income_money', 'income_source', 'income_remark']);
+        $query = Note::find()
+            ->select(['id', 'note_title', 'note_content']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['income_date' => SORT_DESC, 'updated_at' => SORT_DESC]]
+            'sort' => ['defaultOrder' => ['updated_at' => SORT_DESC]]
         ]);
 
         $data = $dataProvider->getModels();
@@ -48,25 +47,16 @@ class IncomeController extends Controller
             'perPage' => $dataProvider->pagination->getPageSize(),
         ];
 
-        // IncomeSource
-        $extra = [];
-
-        $handler = IncomeSource::find()
-            ->select(['id', 'income_source'])
-            ->all();
-        $extra['source'] = $handler;
-
         return [
             'code' => 0,
             'data' => $data,
             'meta' => $meta,
-            'extra' => $extra,
         ];
     }
 
     public function actionAdd()
     {
-        $model = new Income();
+        $model = new Note();
         $model->setScenario('creation');
 
         if ($model->load(Yii::$app->request->post(), '')) {
@@ -75,7 +65,7 @@ class IncomeController extends Controller
                 if ($model->save(false)) {
                     return [
                         'code' => 0,
-                        'data' => $model->toArray(['id', 'income_date', 'income_source', 'income_item', 'income_money', 'income_remark'])
+                        'data' => $model->toArray(['id', 'note_title', 'note_content'])
                     ];
                 } else {
                     return [
@@ -105,9 +95,9 @@ class IncomeController extends Controller
 
     public function actionUpdate()
     {
-        $income = Yii::$app->request->post();
-        $id = $income['id'];
-        $model = Income::findOne($id);
+        $note = Yii::$app->request->post();
+        $id = $note['id'];
+        $model = Note::findOne($id);
 
         if (!$model) {
             return [
@@ -118,7 +108,7 @@ class IncomeController extends Controller
             ];
         }
 
-        if ($model->load($income, '') && $model->validate()) {
+        if ($model->load($note, '') && $model->validate()) {
             $model->last_editor = Yii::$app->user->id;
             if ($model->save(false)) {
                 return [
@@ -145,9 +135,9 @@ class IncomeController extends Controller
 
     public function actionDelete()
     {
-        $income = Yii::$app->request->post();
-        $id = $income['id'];
-        $model = Income::findOne($id);
+        $note = Yii::$app->request->post();
+        $id = $note['id'];
+        $model = Note::findOne($id);
 
         if (!$model) {
             return [
@@ -159,13 +149,10 @@ class IncomeController extends Controller
         }
 
         $transaction = Yii::$app->db->beginTransaction();
-        $recycleContent = '<p>项目：'. $model->income_item .'</p>';
-        $recycleContent = $recycleContent .'<p>金额：'. $model->income_money .'</p>';
-        $recycleContent = $recycleContent .'<p>时间：'. $model->income_date .'</p>';
-        $recycleContent = $recycleContent .'<p>收入来源：'. ($model->source ? $model->source->income_source : '收入来源错误' ) .'</p>';
-        $recycleContent = $recycleContent .'<p>备注：'. $model->income_remark .'</p>';
+        $recycleContent = '<p>'. $model->note_title .'</p>';
+        $recycleContent = $recycleContent .'<p>'. $model->note_content .'</p>';
         $recycle = new Recycle();
-        $recycle->recycle_type = Recycle::TYPE_INCOME;
+        $recycle->recycle_type = Recycle::TYPE_NOTE;
         $recycle->recycle_content = $recycleContent;
         $recycle->last_editor = Yii::$app->user->id;
         if($recycle->validate()&&$recycle->save(false)){
