@@ -44,7 +44,7 @@ Page({
         sourceName: sourceArray[0],
       })
       wx.setNavigationBarTitle({
-        title: '新增收入'
+        title: '新增消费'
       })
     }
   },

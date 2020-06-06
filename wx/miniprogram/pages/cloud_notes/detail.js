@@ -16,6 +16,10 @@ Page({
       wx.setNavigationBarTitle({
         title: decodeURIComponent(options.title)
       })
+    } else {
+      wx.setNavigationBarTitle({
+        title: '新增笔记'
+      })
     }
   },
   /*

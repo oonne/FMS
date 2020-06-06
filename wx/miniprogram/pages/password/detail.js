@@ -22,6 +22,10 @@ Page({
       wx.setNavigationBarTitle({
         title: decodeURIComponent(options.password_item)
       })
+    } else {
+      wx.setNavigationBarTitle({
+        title: '新增密码'
+      })
     }
   },
   /*
