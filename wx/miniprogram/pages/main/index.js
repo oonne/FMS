@@ -64,12 +64,12 @@ Page({
     wx.cloud.callFunction({
       name: 'login',
     }).then(res=>{
-      wx.hideNavigationBarLoading()
       this.loginSuccess(res.result)
     })
   },
   // 登录接口返回之后的逻辑
   loginSuccess (result) {
+    wx.hideNavigationBarLoading()
     getApp().globalData.openId = result.wxContext.OPENID
     getApp().globalData.token = result.res.data.access_token
     getApp().globalData.name = result.res.data.nickname
