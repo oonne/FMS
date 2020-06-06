@@ -5,9 +5,13 @@ namespace frontend\controllers;
 use Yii;
 use common\filters\HeaderParamAuth;
 use yii\data\ActiveDataProvider;
+use yii\data\Sort;
 use common\models\Expenses;
 use common\models\Note;
 use common\models\Password;
+use common\models\Handler;
+use common\models\IncomeSource;
+use common\models\Category;
 
 class StatisticsController extends Controller
 {
@@ -41,12 +45,29 @@ class StatisticsController extends Controller
         // 密码总数
         $passwordCount = Password::find()->count();
         
+        // 经手人
+        $handler = Handler::find()
+                    ->select(['id', 'handler_name'])
+                    ->all();
+        // 分类
+        $category = Category::find()
+                    ->orderBy(['category_sequence' => SORT_DESC])
+                    ->select(['id', 'category_sequence', 'category_name'])
+                    ->all();
+        // 来源
+        $source = IncomeSource::find()
+                    ->select(['id', 'income_source'])
+                    ->all();
+
         return [
             'Ret' => 0,
             'Data' => [
                 'dailyExpenses' => $dailyExpenses,
                 'noteCount' => $noteCount,
                 'passwordCount' => $passwordCount,
+                'handler' => $handler,
+                'category' => $category,
+                'source' => $source,
             ],
         ];
     }

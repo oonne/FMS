@@ -77,14 +77,11 @@ Page({
     // 登录完成之后，刷新数据
     this.getCloudNotes()
     this.getDatas()
-    // 如果token有值，则显示更多功能，并且把基础信息储存到app.js中
+    // 如果token有值，则显示更多功能
     if (getApp().globalData.token) {
       this.setData({
         auth: true,
       })
-      getApp().globalData.source = result.res.extra.source
-      getApp().globalData.handler = result.res.extra.handler
-      getApp().globalData.category = result.res.extra.category
     }
   },
 
@@ -114,18 +111,21 @@ Page({
       })
     })
   },
-  // 获取统计数据（Api）
+  // 获取统计数据和基础数据
   getDatas () {
     if (!getApp().globalData.token) {
       return
     }
     statistics.index().then(res=>{
-      const {dailyExpenses, noteCount, passwordCount} = res.Data
+      const {dailyExpenses, noteCount, passwordCount, source, handler, category} = res.Data
       this.setData({
         'expenses.daily': dailyExpenses || 0,
         'notes.count': noteCount || 0,
         'password.count': passwordCount || 0,
       })
+      getApp().globalData.source = source
+      getApp().globalData.handler = handler
+      getApp().globalData.category = category
     })
     wx.stopPullDownRefresh()
   },

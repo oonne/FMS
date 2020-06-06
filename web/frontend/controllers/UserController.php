@@ -6,9 +6,6 @@ use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use common\models\User;
-use common\models\Handler;
-use common\models\IncomeSource;
-use common\models\Category;
 
 class UserController extends Controller
 {
@@ -21,7 +18,6 @@ class UserController extends Controller
 
     /**
      * openid换token
-     * 顺便查询经手人、分类等基础信息，一起存起来
      */
     public function actionLogin()
     {
@@ -38,27 +34,9 @@ class UserController extends Controller
             Yii::$app->user->loginByAccessToken($user->access_token);
             $data = $user->toArray(['username', 'nickname', 'access_token']);
 
-            $extra = [];
-            // 经手人
-            $handler = Handler::find()
-                        ->select(['id', 'handler_name'])
-                        ->all();
-            $extra['handler'] = $handler;
-            // 分类
-            $category = Category::find()
-                        ->select(['id', 'category_name'])
-                        ->all();
-            $extra['category'] = $category;
-            // 来源
-            $source = IncomeSource::find()
-                        ->select(['id', 'income_source'])
-                        ->all();
-            $extra['source'] = $source;
-
             return [
                 'code' => 0,
                 'data' => $data,
-                'extra' => $extra,
             ];
         } else {
             Yii::warning('查无此人！');
