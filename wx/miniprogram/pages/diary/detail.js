@@ -32,6 +32,14 @@ Page({
     }
   },
   /*
+   * 修改日期
+   */
+  changeDate (e) {
+    this.setData({
+      date: e.detail.value
+    })
+  },
+  /*
    * 保存按钮
    */ 
   save(e){
@@ -56,14 +64,6 @@ Page({
     } else {
       this.update({date, content})
     }
-  },
-  /*
-   * 修改日期
-   */
-  changeDate (e) {
-    this.setData({
-      date: e.detail.value
-    })
   },
   /*
    * 新增

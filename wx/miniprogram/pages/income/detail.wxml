@@ -6,15 +6,19 @@
     </view>
     <view class="cell cell-input">
       <view class="cell-attr">金额</view>
-      <input name="money" placeholder="金额" value="{{money}}"/>
+      <input name="money" type="digit" placeholder="金额" value="{{money}}"/>
     </view>
-    <view class="cell cell-input">
+    <view class="cell cell-picker">
       <view class="cell-attr">日期</view>
-      <input name="date" placeholder="日期" value="{{date}}"/>
+      <picker mode="date" bindchange="changeDate" name="date" value="{{date}}">
+        {{date}}
+      </picker>
     </view>
-    <view class="cell cell-input">
+    <view class="cell cell-picker">
       <view class="cell-attr">来源</view>
-      <input name="source" placeholder="来源" value="{{source}}"/>
+      <picker mode="selector" bindchange="changeSource" name="source" value="{{source}}" range="{{sourceArray}}">
+        {{sourceName}}
+      </picker>
     </view>
     <view class="cell cell-textarea">
       <textarea

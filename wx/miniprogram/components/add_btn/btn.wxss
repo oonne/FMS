@@ -42,9 +42,9 @@
 .diary{
   background-color: rgb(0, 214, 203);
 }
-.expenses{
+.income{
   background-color: rgb(108, 128, 172);
 }
-.income{
+.expenses{
   background-color: rgb(94, 196, 205);
 }

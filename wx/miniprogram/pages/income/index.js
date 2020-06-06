@@ -51,8 +51,9 @@ Page({
       'per-page': config.pageSize,
       page: page
     }).then(res=>{
+      let data = this.formatDate(res.data)
       this.setData({
-        list: page===1 ? res.data : list.concat(res.data),
+        list: page===1 ? data : list.concat(data),
         page: res.meta.currentPage,
         pageCount: res.meta.pageCount,
         loading: false,
@@ -67,14 +68,19 @@ Page({
    * return {array} list 格式化后的列表
    */ 
   formatDate(list) {
-
+    const sourceList = getApp().globalData.source
+    return list.map(item=>{
+      let source = sourceList.find(sourceItem=>sourceItem.id==item.income_source)
+      item.source = source.income_source
+      return item
+    })
   },
   toDetail(e) {
     const id = e.currentTarget.dataset.id
     const income = this.data.list.find(item=>item.id===id)
 
     wx.navigateTo({
-      url: `${route.PASSWORD_DETAIL}?${obj2url(income)}`,
+      url: `${route.INCOME_DETAIL}?${obj2url(income)}`,
     })
   },
 })

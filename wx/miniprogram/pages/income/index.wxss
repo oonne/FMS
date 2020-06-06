@@ -5,10 +5,24 @@
   position: relative;
   border-radius: 8rpx;
   margin-bottom: 16rpx;
-  height: 100rpx;
+  height: 120rpx;
   background-color: #fff;
   padding: 12rpx 16rpx;
   overflow: hidden;
+  padding-right: 200rpx;
+}
+.money{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 200rpx;
+  background-color: #999;
+  color: #fff;
+  text-align: center;
+  line-height: 144rpx;
+  font-family: "number";
+  font-size: 36rpx;
 }
 .title{
   color: #333;

@@ -52,7 +52,7 @@ class StatisticsController extends Controller
         // 分类
         $category = Category::find()
                     ->orderBy(['category_sequence' => SORT_DESC])
-                    ->select(['id', 'category_sequence', 'category_name'])
+                    ->select(['id', 'category_name'])
                     ->all();
         // 来源
         $source = IncomeSource::find()
