@@ -15,9 +15,15 @@
       </picker>
     </view>
     <view class="cell cell-picker">
-      <view class="cell-attr">来源</view>
-      <picker mode="selector" bindchange="changeSource" name="source" value="{{source}}" range="{{sourceArray}}">
-        {{sourceName}}
+      <view class="cell-attr">分类</view>
+      <picker mode="selector" bindchange="changeCategory" name="category" value="{{category}}" range="{{categoryArray}}">
+        {{categoryName}}
+      </picker>
+    </view>
+    <view class="cell cell-picker">
+      <view class="cell-attr">经手人</view>
+      <picker mode="selector" bindchange="changeHandler" name="handler" value="{{handler}}" range="{{handlerArray}}">
+        {{handlerName}}
       </picker>
     </view>
     <view class="cell cell-textarea">

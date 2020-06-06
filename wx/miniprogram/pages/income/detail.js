@@ -125,7 +125,7 @@ Page({
    * @params {string} params.item 项目
    * @params {object} params.money 金额
    * @params {object} params.date 日期
-   * @params {object} params.source 来源
+   * @params {object} params.income_source 来源
    * @params {object} params.remark 备注
    */
   update(params){

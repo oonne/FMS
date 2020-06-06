@@ -1,47 +1,60 @@
-import { income } from '../../intercept/index'
+import { expenses } from '../../intercept/index'
 import { formatDate } from '../../utils/util'
 
 Page({
   data: {
-    sourceArray: [],
+    categoryArray: [],
+    handlerArray: [],
     isAdd: true,
     id: '',
     item: '',
     money: '',
     date: '',
-    source: 0,
-    sourceName: '',
+    category: 0,
+    categoryName: '',
+    handler: 0,
+    handlerName: '',
     remark: '',
   },
   onLoad(options){
-    const sourceList = getApp().globalData.source
-    const sourceArray = sourceList.map(item=>item.income_source)
+    const categoryList = getApp().globalData.category
+    const categoryArray = categoryList.map(item=>item.category_name)
+    const handlerList = getApp().globalData.handler
+    const handlerArray = handlerList.map(item=>item.handler_name)
     if (options.id) {
       // 修改则读取数据
-      const sourceIndex = sourceList.findIndex(item=>item.id==options.income_source)
-      const sourceName = sourceArray[sourceIndex]
+      const categoryIndex = categoryList.findIndex(item=>item.id==options.expenses_category)
+      const categoryName = categoryArray[categoryIndex]
+      const handlerIndex = handlerList.findIndex(item=>item.id==options.expenses_handler)
+      const handlerName = handlerArray[handlerIndex]
       this.setData({
-        sourceArray: sourceArray,
+        categoryArray: categoryArray,
+        handlerArray: handlerArray,
         isAdd: false,
         id: options.id,
-        item: decodeURIComponent(options.income_item),
-        money: decodeURIComponent(options.income_money),
-        date: decodeURIComponent(options.income_date),
-        source: sourceIndex,
-        sourceName: sourceName,
-        remark: decodeURIComponent(options.income_remark),
+        item: decodeURIComponent(options.expenses_item),
+        money: decodeURIComponent(options.expenses_money),
+        date: decodeURIComponent(options.expenses_date),
+        category: categoryIndex,
+        categoryName: categoryName,
+        handler: handlerIndex,
+        handlerName: handlerName,
+        remark: decodeURIComponent(options.expenses_remark),
       })
       wx.setNavigationBarTitle({
-        title: decodeURIComponent(options.income_item)
+        title: decodeURIComponent(options.expenses_item)
       })
     } else {
       // 新增则默认今天
       let today = formatDate(new Date(), 'yyyy-MM-dd')
       this.setData({
-        sourceArray: sourceArray,
+        categoryArray: categoryArray,
+        handlerArray: handlerArray,
         date: today,
-        source: 0,
-        sourceName: sourceArray[0],
+        category: 0,
+        categoryName: categoryArray[0],
+        handler: 0,
+        handlerName: handlerArray[0],
       })
       wx.setNavigationBarTitle({
         title: '新增消费'
@@ -57,20 +70,30 @@ Page({
     })
   },
   /*
-   * 修改来源
+   * 修改分类
    */
-  changeSource (e) {
+  changeCategory (e) {
     let value = e.detail.value
     this.setData({
-      source: value,
-      sourceName: this.data.sourceArray[value],
+      category: value,
+      categoryName: this.data.categoryArray[value],
+    })
+  },
+  /*
+   * 修改经手人
+   */
+  changeHandler (e) {
+    let value = e.detail.value
+    this.setData({
+      handler: value,
+      handlerName: this.data.handlerArray[value],
     })
   },
   /*
    * 保存按钮
    */ 
   save(e){
-    const {item, money, date, source, remark} = e.detail.value
+    const {item, money, date, category, handler, remark} = e.detail.value
     if (!item) {
       wx.showToast({
         title: '请填写项目',
@@ -92,13 +115,15 @@ Page({
       })
       return
     }
-    const sourceList = getApp().globalData.source
-    const income_source = sourceList[source].id
+    const categoryList = getApp().globalData.category
+    const expenses_category = categoryList[category].id
+    const handlerList = getApp().globalData.handler
+    const expenses_handler = handlerList[handler].id
 
     if (this.data.isAdd) {
-      this.add({item, money, date, income_source, remark})
+      this.add({item, money, date, expenses_category, expenses_handler, remark})
     } else {
-      this.update({item, money, date, income_source, remark})
+      this.update({item, money, date, expenses_category, expenses_handler, remark})
     }
   },
   /*
@@ -106,16 +131,18 @@ Page({
    * @params {string} params.item 项目
    * @params {object} params.money 金额
    * @params {object} params.date 日期
-   * @params {object} params.income_source 来源
+   * @params {object} params.expenses_category 分类
+   * @params {object} params.expenses_handler 经手人
    * @params {object} params.remark 备注
    */
   add(params){
-    income.add({
-      income_item: params.item,
-      income_money: params.money,
-      income_date: params.date,
-      income_source: params.income_source,
-      income_remark: params.remark,
+    expenses.add({
+      expenses_item: params.item,
+      expenses_money: params.money,
+      expenses_date: params.date,
+      expenses_category: params.expenses_category,
+      expenses_handler: params.expenses_handler,
+      expenses_remark: params.remark,
     }).then(res=>{
       wx.navigateBack()
     })
@@ -125,17 +152,19 @@ Page({
    * @params {string} params.item 项目
    * @params {object} params.money 金额
    * @params {object} params.date 日期
-   * @params {object} params.source 来源
+   * @params {object} params.expenses_category 分类
+   * @params {object} params.expenses_handler 经手人
    * @params {object} params.remark 备注
    */
   update(params){
-    income.update({
+    expenses.update({
       id: this.data.id,
-      income_item: params.item,
-      income_money: params.money,
-      income_date: params.date,
-      income_source: params.income_source,
-      income_remark: params.remark,
+      expenses_item: params.item,
+      expenses_money: params.money,
+      expenses_date: params.date,
+      expenses_category: params.expenses_category,
+      expenses_handler: params.expenses_handler,
+      expenses_remark: params.remark,
     }).then(res=>{
       wx.navigateBack()
     })
@@ -150,7 +179,7 @@ Page({
       confirmColor: '#F00',
       success: res=>{
         if (res.confirm) {
-          income.delete({
+          expenses.delete({
             id: this.data.id
           }).then(res=>{
             wx.navigateBack()
