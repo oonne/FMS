@@ -1,9 +1,8 @@
 let config = {
-  version: '0.0.1',
+  version: '1.0.0',
   cloudEnv: 'fms-1',
   pageSize: 10,
-  // reqApi: 'https://afms.oonne.com',
-  reqApi: 'http://afms.oonne.local',
+  reqApi: 'https://afms.oonne.com',
 }
 
 export default config
