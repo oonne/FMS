@@ -46,7 +46,6 @@ class UserController extends Controller
             $extra['handler'] = $handler;
             // 分类
             $category = Category::find()
-                        ->sort(['category_sequence' => SORT_DESC])
                         ->select(['id', 'category_name'])
                         ->all();
             $extra['category'] = $category;
