@@ -1,0 +1,10 @@
+<view class="index">
+  <view wx:for="{{list}}" wx:key="id" class="item" data-id="{{item.id}}" bind:tap="toDetail">
+    <view class="title">{{item.income_item}}</view>
+    <view class="content">{{item.income_money}}</view>
+    <view class="content">{{item.income_source}}  {{item.income_date}}</view>
+  </view>
+  <mp-loading wx:if="{{loading}}" type="circle"></mp-loading>
+</view>
+
+<add-btn page="INCOME_DETAIL" bind:add="initData"/>

@@ -11,6 +11,13 @@
       ]
     },
     {
+      "root": "pages/income",
+      "pages": [
+        "index",
+        "detail"
+      ]
+    },
+    {
       "root": "pages/diary",
       "pages": [
         "index",
@@ -57,6 +64,7 @@
     "pages/main/index": {
       "packages": [
         "pages/cloud_notes",
+        "pages/income",
         "pages/diary",
         "pages/notes",
         "pages/password"

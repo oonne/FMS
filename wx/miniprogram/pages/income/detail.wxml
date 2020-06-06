@@ -1,0 +1,32 @@
+<form bindsubmit="save">
+  <view class="cells">
+    <view class="cell cell-input">
+      <view class="cell-attr">项目</view>
+      <input name="item" placeholder="项目" value="{{item}}"/>
+    </view>
+    <view class="cell cell-input">
+      <view class="cell-attr">金额</view>
+      <input name="money" placeholder="金额" value="{{money}}"/>
+    </view>
+    <view class="cell cell-input">
+      <view class="cell-attr">日期</view>
+      <input name="date" placeholder="日期" value="{{date}}"/>
+    </view>
+    <view class="cell cell-input">
+      <view class="cell-attr">来源</view>
+      <input name="source" placeholder="来源" value="{{source}}"/>
+    </view>
+    <view class="cell cell-textarea">
+      <textarea
+        name="remark"
+        auto-height="{{true}}"
+        class="cell-textarea"
+        placeholder="备注"
+        value="{{remark}}"
+      />
+    </view>
+  </view>
+
+  <button class="form-btn form-btn-submit" form-type="submit">保存</button>
+  <button wx:if="{{!isAdd}}" class="form-btn form-btn-delete" bind:tap="delete">删除</button>
+</form>
