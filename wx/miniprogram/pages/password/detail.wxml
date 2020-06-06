@@ -2,15 +2,24 @@
   <view class="cells">
     <view class="cell cell-input">
       <view class="cell-attr">密码项</view>
-      <input name="title" placeholder="密码项" value="{{password_item}}"/>
+      <input name="item" placeholder="密码项" value="{{item}}"/>
     </view>
     <view class="cell cell-input">
       <view class="cell-attr">用户名</view>
-      <input name="title" placeholder="用户名" value="{{user_name}}"/>
+      <input name="userName" placeholder="用户名" value="{{userName}}"/>
     </view>
     <view class="cell cell-input">
       <view class="cell-attr">密码</view>
-      <input name="title" placeholder="密码" value="{{password}}"/>
+      <input name="password" placeholder="密码" value="{{password}}"/>
+    </view>
+    <view class="cell cell-textarea">
+      <textarea
+        name="remark"
+        auto-height="{{true}}"
+        class="cell-textarea"
+        placeholder="备注"
+        value="{{remark}}"
+      />
     </view>
   </view>
 

@@ -4,16 +4,23 @@ Page({
   data: {
     isAdd: true,
     id: '',
-    title: '',
-    content: '',
+    item: '',
+    userName: '',
+    password: '',
+    remark: '',
   },
   onLoad(options){
     if (options.id) {
       this.setData({
         isAdd: false,
         id: options.id,
-        title: decodeURIComponent(options.note_title),
-        content: decodeURIComponent(options.note_content),
+        item: decodeURIComponent(options.password_item),
+        userName: decodeURIComponent(options.user_name),
+        password: decodeURIComponent(options.password),
+        remark: decodeURIComponent(options.password_remark),
+      })
+      wx.setNavigationBarTitle({
+        title: decodeURIComponent(options.password_item)
       })
     }
   },
@@ -21,51 +28,66 @@ Page({
    * 保存按钮
    */ 
   save(e){
-    const {title, content} = e.detail.value
-    if (!title) {
+    const {item, userName, password, remark} = e.detail.value
+    if (!item) {
       wx.showToast({
-        title: '请填写标题',
+        title: '请填写密码项',
         icon: 'none'
       })
       return
     }
-    if (!content) {
+    if (!userName) {
       wx.showToast({
-        title: '请填写内容',
+        title: '请填写用户名',
+        icon: 'none'
+      })
+      return
+    }
+    if (!password) {
+      wx.showToast({
+        title: '请填写密码',
         icon: 'none'
       })
       return
     }
 
     if (this.data.isAdd) {
-      this.add({title, content})
+      this.add({item, userName, password, remark})
     } else {
-      this.update({title, content})
+      this.update({item, userName, password, remark})
     }
   },
   /*
    * 新增
-   * @params {string} params.title 标题
-   * @params {object} params.content 内容
+   * @params {string} params.item 密码项
+   * @params {object} params.userName 用户名
+   * @params {object} params.password 密码
+   * @params {object} params.remark 备注
    */
   add(params){
-    note.add({
-      note_title: params.title,
-      note_content: params.content,
+    password.add({
+      password_item: params.item,
+      user_name: params.userName,
+      password: params.password,
+      password_remark: params.remark,
     }).then(res=>{
       wx.navigateBack()
     })
   },
   /*
    * 修改
-   * @params {string} params.title 标题
-   * @params {object} params.content 内容
+   * @params {string} params.item 密码项
+   * @params {object} params.userName 用户名
+   * @params {object} params.password 密码
+   * @params {object} params.remark 备注
    */
   update(params){
-    note.update({
+    password.update({
       id: this.data.id,
-      note_title: params.title,
-      note_content: params.content,
+      password_item: params.item,
+      user_name: params.userName,
+      password: params.password,
+      password_remark: params.remark,
     }).then(res=>{
       wx.navigateBack()
     })
@@ -75,12 +97,12 @@ Page({
    */
   delete(){
     wx.showModal({
-      title: `确认删除${this.data.title}?`,
+      title: `确认删除${this.data.item}?`,
       confirmText: '删除',
       confirmColor: '#F00',
       success: res=>{
         if (res.confirm) {
-          note.delete({
+          password.delete({
             id: this.data.id
           }).then(res=>{
             wx.navigateBack()

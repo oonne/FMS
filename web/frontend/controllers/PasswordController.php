@@ -32,7 +32,7 @@ class PasswordController extends Controller
     public function actionIndex()
     {
         $query = Password::find()
-            ->select(['id', 'password_item', 'user_name', 'password']);
+            ->select(['id', 'password_item', 'user_name', 'password', 'password_remark']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -65,7 +65,7 @@ class PasswordController extends Controller
                 if ($model->save(false)) {
                     return [
                         'code' => 0,
-                        'data' => $model->toArray(['id', 'password_item', 'user_name', 'password'])
+                        'data' => $model->toArray(['id', 'password_item', 'user_name', 'password', 'password_remark'])
                     ];
                 } else {
                     return [
@@ -152,6 +152,7 @@ class PasswordController extends Controller
         $recycleContent = '<p>密码项：'. $model->password_item .'</p>';
         $recycleContent = $recycleContent .'<p>用户名：'. $model->user_name .'</p>';
         $recycleContent = $recycleContent .'<p>密码：'. $model->password .'</p>';
+        $recycleContent = $recycleContent .'<p>备注：'. $model->password_remark .'</p>';
         $recycle = new Recycle();
         $recycle->recycle_type = Recycle::TYPE_PASSWORD;
         $recycle->recycle_content = $recycleContent;

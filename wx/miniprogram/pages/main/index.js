@@ -77,11 +77,14 @@ Page({
     // 登录完成之后，刷新数据
     this.getCloudNotes()
     this.getDatas()
-    // 如果token有值，则显示更多功能
+    // 如果token有值，则显示更多功能，并且把基础信息储存到app.js中
     if (getApp().globalData.token) {
       this.setData({
         auth: true,
       })
+      getApp().globalData.source = result.res.extra.source
+      getApp().globalData.handler = result.res.extra.handler
+      getApp().globalData.category = result.res.extra.category
     }
   },
 

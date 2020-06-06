@@ -5,6 +5,10 @@ App({
     openId: '',
     token: '',
     name: '',
+
+    source: [],
+    handler: [],
+    category: [],
   },
   onLaunch: function (options) {
     console.log("-------------Launch", config.version, options)
