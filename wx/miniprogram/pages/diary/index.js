@@ -1,7 +1,7 @@
 import config from '../../config/config'
 import route from '../../config/route'
 import { obj2url } from '../../utils/util'
-import { note } from '../../intercept/index'
+import { diary } from '../../intercept/index'
 
 
 Page({
@@ -47,7 +47,7 @@ Page({
       loading: true
     })
 
-    note.index({
+    diary.index({
       'per-page': config.pageSize,
       page: page
     }).then(res=>{
@@ -62,10 +62,10 @@ Page({
   },
   toDetail(e) {
     const id = e.currentTarget.dataset.id
-    const notes = this.data.list.find(item=>item.id===id)
+    const diary = this.data.list.find(item=>item.id===id)
 
     wx.navigateTo({
-      url: `${route.NOTES_DETAIL}?${obj2url(notes)}`,
+      url: `${route.DIARY_DETAIL}?${obj2url(diary)}`,
     })
   },
 })

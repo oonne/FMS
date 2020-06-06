@@ -1,19 +1,33 @@
-import { note } from '../../intercept/index'
+import { diary } from '../../intercept/index'
+import { formatDate } from '../../utils/util'
 
 Page({
   data: {
     isAdd: true,
     id: '',
-    title: '',
+    date: '',
     content: '',
   },
   onLoad(options){
     if (options.id) {
+      // 修改则读取数据
       this.setData({
         isAdd: false,
         id: options.id,
-        title: decodeURIComponent(options.note_title),
-        content: decodeURIComponent(options.note_content),
+        date: decodeURIComponent(options.diary_date),
+        content: decodeURIComponent(options.diary_content),
+      })
+      wx.setNavigationBarTitle({
+        title: decodeURIComponent(options.diary_date)
+      })
+    } else {
+      // 新增则默认今天
+      let today = formatDate(new Date(), 'yyyy-MM-dd')
+      this.setData({
+        date: today,
+      })
+      wx.setNavigationBarTitle({
+        title: today
       })
     }
   },
@@ -21,10 +35,10 @@ Page({
    * 保存按钮
    */ 
   save(e){
-    const {title, content} = e.detail.value
-    if (!title) {
+    const {date, content} = e.detail.value
+    if (!date) {
       wx.showToast({
-        title: '请填写标题',
+        title: '请填写日期',
         icon: 'none'
       })
       return
@@ -38,34 +52,42 @@ Page({
     }
 
     if (this.data.isAdd) {
-      this.add({title, content})
+      this.add({date, content})
     } else {
-      this.update({title, content})
+      this.update({date, content})
     }
   },
   /*
+   * 修改日期
+   */
+  changeDate (e) {
+    this.setData({
+      date: e.detail.value
+    })
+  },
+  /*
    * 新增
-   * @params {string} params.title 标题
+   * @params {string} params.date 日期
    * @params {object} params.content 内容
    */
   add(params){
-    note.add({
-      note_title: params.title,
-      note_content: params.content,
+    diary.add({
+      diary_date: params.date,
+      diary_content: params.content,
     }).then(res=>{
       wx.navigateBack()
     })
   },
   /*
    * 修改
-   * @params {string} params.title 标题
+   * @params {string} params.date 日期
    * @params {object} params.content 内容
    */
   update(params){
-    note.update({
+    diary.update({
       id: this.data.id,
-      note_title: params.title,
-      note_content: params.content,
+      diary_date: params.date,
+      diary_content: params.content,
     }).then(res=>{
       wx.navigateBack()
     })
@@ -75,12 +97,12 @@ Page({
    */
   delete(){
     wx.showModal({
-      title: `确认删除${this.data.title}?`,
+      title: `确认删除${this.data.date}?`,
       confirmText: '删除',
       confirmColor: '#F00',
       success: res=>{
         if (res.confirm) {
-          note.delete({
+          diary.delete({
             id: this.data.id
           }).then(res=>{
             wx.navigateBack()

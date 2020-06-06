@@ -1,7 +1,9 @@
 <form bindsubmit="save">
   <view class="cells">
-    <view class="cell cell-input">
-      <input name="title" placeholder="标题" value="{{title}}"/>
+    <view class="cell cell-picker">
+      <picker mode="date" bindchange="changeDate" name="date" value="{{date}}">
+        {{date}}
+      </picker>
     </view>
     <view class="cell cell-textarea">
       <textarea

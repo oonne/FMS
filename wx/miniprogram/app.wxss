@@ -44,6 +44,14 @@ page{
   color: #000;
   flex: 1 1 300rpx;
 }
+.cell-picker picker{
+  height: 92rpx;
+  line-height: 92rpx;
+  font-size: 36rpx;
+  font-weight: 400;
+  color: #000;
+  flex: 1 1 300rpx;
+}
 .cell-textarea{
   height: auto;
   font-size: 36rpx;
