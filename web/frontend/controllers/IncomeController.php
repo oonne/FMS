@@ -6,7 +6,6 @@ use Yii;
 use common\filters\HeaderParamAuth;
 use yii\data\ActiveDataProvider;
 use common\models\Income;
-use common\models\IncomeSource;
 use common\models\Recycle;
 
 class IncomeController extends Controller
@@ -48,19 +47,10 @@ class IncomeController extends Controller
             'perPage' => $dataProvider->pagination->getPageSize(),
         ];
 
-        // IncomeSource
-        $extra = [];
-
-        $handler = IncomeSource::find()
-            ->select(['id', 'income_source'])
-            ->all();
-        $extra['source'] = $handler;
-
         return [
             'code' => 0,
             'data' => $data,
             'meta' => $meta,
-            'extra' => $extra,
         ];
     }
 

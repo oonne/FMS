@@ -6,8 +6,6 @@ use Yii;
 use common\filters\HeaderParamAuth;
 use yii\data\ActiveDataProvider;
 use common\models\Expenses;
-use common\models\Category;
-use common\models\Handler;
 use common\models\Recycle;
 
 class ExpensesController extends Controller
@@ -49,24 +47,10 @@ class ExpensesController extends Controller
             'perPage' => $dataProvider->pagination->getPageSize(),
         ];
 
-        // Category & Handler
-        $extra = [];
-        
-        $category = Category::find()
-            ->select(['id', 'category_name'])
-            ->all();
-        $extra['category'] = $category;
-
-        $handler = Handler::find()
-            ->select(['id', 'handler_name'])
-            ->all();
-        $extra['handler'] = $handler;
-
         return [
             'code' => 0,
             'data' => $data,
             'meta' => $meta,
-            'extra' => $extra,
         ];
     }
 
