@@ -5,10 +5,13 @@ import { statistics } from '../../intercept/index'
 Page({
   data: {
     auth: false, //是否有家庭权限
+    //云记账
+    cloudExpenses: {
+      count: 0, //总数量
+    },
     //云笔记
     cloudNotes: {
       count: 0, //总数量
-      lastNote: '', //最后更新的笔记
     },
     // 消费
     expenses: {
@@ -93,13 +96,14 @@ Page({
     this.getCloudNotes()
     this.getDatas()
   },
-  // 获取云笔记信息（云数据库）
+  // 获取云数据库统计信息
   getCloudNotes () {
     if (!getApp().globalData.openId) {
       return
     }
     const db = wx.cloud.database()
     const notes = db.collection('notes')
+    const expenses = db.collection('expenses')
 
     notes.where({
       _openid: getApp().globalData.openId,
@@ -108,6 +112,15 @@ Page({
     .then(res=>{
       this.setData({
         'cloudNotes.count': res.total
+      })
+    })
+    expenses.where({
+      _openid: getApp().globalData.openId,
+    })
+    .count()
+    .then(res=>{
+      this.setData({
+        'cloudExpenses.count': res.total
       })
     })
   },

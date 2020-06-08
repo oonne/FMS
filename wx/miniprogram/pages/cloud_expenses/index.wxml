@@ -1,7 +1,8 @@
 <view class="index">
   <view wx:for="{{list}}" wx:key="_id" class="item" data-id="{{item._id}}" bind:tap="toDetail">
-    <view class="title">{{item.title}}</view>
-    <view class="content">{{item.content}}</view>
+    <view class="title">{{item.item}}</view>
+    <view class="content">{{item.date}}</view>
+    <view class="money">{{item.money}}</view>
   </view>
   <mp-loading wx:if="{{loading}}" type="circle"></mp-loading>
 
@@ -11,4 +12,4 @@
   </view>
 </view>
 
-<add-btn page="CLOUD_NOTES_DETAIL" bind:add="initData"/>
+<add-btn page="CLOUD_EXPENSES_DETAIL" bind:add="initData"/>

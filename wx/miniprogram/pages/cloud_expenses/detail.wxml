@@ -1,16 +1,18 @@
 <form bindsubmit="save">
   <view class="cells">
     <view class="cell cell-input">
-      <input name="title" placeholder="标题" value="{{title}}"/>
+      <view class="cell-attr">项目</view>
+      <input name="item" placeholder="项目" value="{{item}}"/>
     </view>
-    <view class="cell cell-textarea">
-      <textarea
-        name="content"
-        auto-height="{{true}}"
-        class="cell-textarea"
-        placeholder="内容"
-        value="{{content}}"
-      />
+    <view class="cell cell-picker">
+      <view class="cell-attr">日期</view>
+      <picker mode="date" bindchange="changeDate" name="date" value="{{date}}">
+        {{date}}
+      </picker>
+    </view>
+    <view class="cell cell-input">
+      <view class="cell-attr">金额</view>
+      <input name="money" type="digit" placeholder="金额" value="{{money}}"/>
     </view>
   </view>
 

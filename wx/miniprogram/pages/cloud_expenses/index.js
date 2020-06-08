@@ -93,7 +93,7 @@ Page({
     const expenses = this.data.list.find(item=>item._id===id)
 
     wx.navigateTo({
-      url: `${route.CLOUD_NOTES_DETAIL}?${obj2url(expenses)}`,
+      url: `${route.CLOUD_EXPENSES_DETAIL}?${obj2url(expenses)}`,
     })
   },
 })

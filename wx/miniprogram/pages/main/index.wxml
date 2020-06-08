@@ -2,7 +2,7 @@
   <view class="row" wx:if="{{!auth}}">
     <view class="block cloud-expenses" bind:tap="toPage" data-page="CLOUD_EXPENSES">
       <view class="name">私人记账本</view>
-      <view class="title">{{cloudNotes.count}}<text class="title-intro">条</text></view>
+      <view class="title">{{cloudExpenses.count}}<text class="title-intro">条</text></view>
     </view>
   </view>
   <view class="row" wx:if="{{auth}}">

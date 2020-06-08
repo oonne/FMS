@@ -5,7 +5,7 @@
   position: relative;
   border-radius: 8rpx;
   margin-bottom: 16rpx;
-  height: 160rpx;
+  height: 100rpx;
   background-color: #fff;
   padding: 12rpx 16rpx;
   overflow: hidden;
@@ -20,6 +20,19 @@
 .content{
   color: #666;
   font-size: 24rpx;
+}
+.money{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 200rpx;
+  background-color: #999;
+  color: #fff;
+  text-align: center;
+  line-height: 124rpx;
+  font-family: "number";
+  font-size: 36rpx;
 }
 .empty{
   color: #999;

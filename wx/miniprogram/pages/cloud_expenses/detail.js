@@ -1,57 +1,82 @@
+import { formatDate } from '../../utils/util'
+
 Page({
   data: {
     isAdd: true,
     id: '',
-    title: '',
-    content: '',
+    item: '',
+    date: '',
+    money: '',
   },
   onLoad(options){
     if (options._id) {
       this.setData({
         isAdd: false,
         id: options._id,
-        title: decodeURIComponent(options.title),
-        content: decodeURIComponent(options.content),
+        item: decodeURIComponent(options.item),
+        date: decodeURIComponent(options.date),
+        money: decodeURIComponent(options.money),
       })
       wx.setNavigationBarTitle({
-        title: decodeURIComponent(options.title)
+        title: decodeURIComponent(options.item)
       })
     } else {
+      // 新增则默认今天
+      let today = formatDate(new Date(), 'yyyy-MM-dd')
+      this.setData({
+        date: today,
+      })
       wx.setNavigationBarTitle({
-        title: '新增笔记'
+        title: '新增记账'
       })
     }
+  },
+  /*
+   * 修改日期
+   */
+  changeDate (e) {
+    this.setData({
+      date: e.detail.value
+    })
   },
   /*
    * 保存按钮
    */ 
   save(e){
-    const {title, content} = e.detail.value
-    if (!title) {
+    const {item, date, money} = e.detail.value
+    if (!item) {
       wx.showToast({
-        title: '请填写标题',
+        title: '请填写项目',
         icon: 'none'
       })
       return
     }
-    if (!content) {
+    if (!date) {
       wx.showToast({
-        title: '请填写内容',
+        title: '请填写日期',
+        icon: 'none'
+      })
+      return
+    }
+    if (!money) {
+      wx.showToast({
+        title: '请填写金额',
         icon: 'none'
       })
       return
     }
 
     if (this.data.isAdd) {
-      this.add({title, content})
+      this.add({item, date, money})
     } else {
-      this.update({title, content})
+      this.update({item, date, money})
     }
   },
   /*
    * 新增
-   * @params {string} params.title 标题
-   * @params {object} params.content 内容
+   * @params {string} params.item 项目
+   * @params {object} params.date 日期
+   * @params {object} params.money 金额
    */
   add(params){
     const db = wx.cloud.database()
@@ -59,8 +84,9 @@ Page({
     
     expenses.add({
       data: {
-        title: params.title,
-        content: params.content,
+        item: params.item,
+        date: params.date,
+        money: params.money,
         created_at: db.serverDate(),
         updated_at: db.serverDate(),
       }
@@ -70,8 +96,9 @@ Page({
   },
   /*
    * 修改
-   * @params {string} params.title 标题
-   * @params {object} params.content 内容
+   * @params {string} params.item 项目
+   * @params {object} params.date 日期
+   * @params {object} params.money 金额
    */
   update(params){
     const db = wx.cloud.database()
@@ -80,8 +107,9 @@ Page({
     expenses.doc(this.data.id)
     .update({
       data: {
-        title: params.title,
-        content: params.content,
+        item: params.item,
+        date: params.date,
+        money: params.money,
         updated_at: db.serverDate(),
       }
     }).then(()=>{
@@ -93,7 +121,7 @@ Page({
    */
   delete(){
     wx.showModal({
-      title: `确认删除${this.data.title}?`,
+      title: `确认删除${this.data.item}?`,
       confirmText: '删除',
       confirmColor: '#F00',
       success: res=>{
