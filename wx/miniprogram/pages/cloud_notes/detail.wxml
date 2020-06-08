@@ -1,7 +1,7 @@
 <form bindsubmit="save">
   <view class="cells">
     <view class="cell cell-input">
-      <input name="title" placeholder="项目" value="{{title}}"/>
+      <input name="title" placeholder="标题" value="{{title}}"/>
     </view>
     <view class="cell cell-textarea">
       <textarea

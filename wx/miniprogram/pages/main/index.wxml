@@ -1,8 +1,8 @@
 <view class="index">
-  <view class="row">
+  <view class="row" wx:if="{{auth}}">
     <view class="block cloud-notes" bind:tap="toPage" data-page="CLOUD_NOTES">
-      <view class="name">私人记账本</view>
-      <view class="title">{{cloudNotes.count}}<text class="title-intro">条</text></view>
+      <view class="name">私人记事本</view>
+      <view class="title">{{cloudNotes.count}}<text class="title-intro">篇</text></view>
     </view>
   </view>
   <view class="row" wx:if="{{auth}}">
