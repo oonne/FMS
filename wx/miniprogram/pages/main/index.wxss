@@ -40,7 +40,7 @@
   font-size: 22rpx;
 }
 
-.cloud-notes{
+.cloud-expenses, .cloud-notes{
   background-color: rgb(212, 147, 187);
   width: 100%;
 }

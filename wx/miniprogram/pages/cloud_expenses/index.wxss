@@ -1,0 +1,28 @@
+.index{
+  padding: 16rpx;
+}
+.item{
+  position: relative;
+  border-radius: 8rpx;
+  margin-bottom: 16rpx;
+  height: 160rpx;
+  background-color: #fff;
+  padding: 12rpx 16rpx;
+  overflow: hidden;
+}
+.title{
+  color: #333;
+  font-size: 36rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.content{
+  color: #666;
+  font-size: 24rpx;
+}
+.empty{
+  color: #999;
+  margin: 400rpx auto;
+  text-align: center;
+}

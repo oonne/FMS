@@ -30,9 +30,9 @@ Page({
       loading: true,
     })
     const db = wx.cloud.database()
-    const notes = db.collection('notes')
+    const expenses = db.collection('expenses')
 
-    notes.where({
+    expenses.where({
       _openid: getApp().globalData.openId,
     })
     .count()
@@ -70,9 +70,9 @@ Page({
     })
 
     const db = wx.cloud.database()
-    const notes = db.collection('notes')
+    const expenses = db.collection('expenses')
 
-    notes.where({
+    expenses.where({
       _openid: getApp().globalData.openId,
     })
     .orderBy('updated_at', 'desc')
@@ -90,10 +90,10 @@ Page({
   },
   toDetail(e) {
     const id = e.currentTarget.dataset.id
-    const notes = this.data.list.find(item=>item._id===id)
+    const expenses = this.data.list.find(item=>item._id===id)
 
     wx.navigateTo({
-      url: `${route.CLOUD_NOTES_DETAIL}?${obj2url(notes)}`,
+      url: `${route.CLOUD_NOTES_DETAIL}?${obj2url(expenses)}`,
     })
   },
 })

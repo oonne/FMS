@@ -30,7 +30,7 @@
   border-radius: 10rpx;
 }
 
-.cloud-notes{
+.cloud-expenses, .cloud-notes{
   background-color: rgb(212, 147, 187);
 }
 .notes{
