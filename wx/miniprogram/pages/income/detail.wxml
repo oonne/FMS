@@ -27,6 +27,7 @@
         class="cell-textarea"
         placeholder="备注"
         value="{{remark}}"
+        maxlength="-1"
       />
     </view>
   </view>

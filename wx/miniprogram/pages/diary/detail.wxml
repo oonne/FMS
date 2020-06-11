@@ -12,6 +12,7 @@
         class="cell-textarea"
         placeholder="内容"
         value="{{content}}"
+        maxlength="-1"
       />
     </view>
   </view>
