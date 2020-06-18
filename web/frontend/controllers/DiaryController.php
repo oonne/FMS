@@ -36,7 +36,7 @@ class DiaryController extends Controller
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['updated_at' => SORT_DESC]]
+            'sort' => ['defaultOrder' => ['diary_date' => SORT_DESC, 'updated_at' => SORT_DESC]]
         ]);
 
         $data = $dataProvider->getModels();

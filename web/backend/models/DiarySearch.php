@@ -26,7 +26,7 @@ class DiarySearch extends Diary
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['diary_date' => SORT_DESC]]
+            'sort' => ['defaultOrder' => ['diary_date' => SORT_DESC, 'updated_at' => SORT_DESC]]
         ]);
 
         if (!($this->load($params) && $this->validate())) {
