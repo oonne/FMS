@@ -93,8 +93,7 @@ Page({
    */
   // 下拉页面时，刷新数据
   onPullDownRefresh () {
-    this.getCloudNotes()
-    this.getDatas()
+    this.fetchLogin()
   },
   // 获取云数据库统计信息
   getCloudNotes () {
