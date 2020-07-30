@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "私人记事本",
-  "usingComponents": {
-    "mp-loading": "/weui-miniprogram/loading/loading",
-    "add-btn": "../../components/add_btn/btn"
-  }
-}

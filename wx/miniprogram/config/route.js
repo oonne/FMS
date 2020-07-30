@@ -9,10 +9,6 @@ export default {
   CLOUD_EXPENSES: '/pages/cloud_expenses/index',
   CLOUD_EXPENSES_DETAIL: '/pages/cloud_expenses/detail',
 
-  /*云记事本*/
-  CLOUD_NOTES: '/pages/cloud_notes/index',
-  CLOUD_NOTES_DETAIL: '/pages/cloud_notes/detail',
-
   /*记事本*/
   NOTES: '/pages/notes/index',
   NOTES_DETAIL: '/pages/notes/detail',

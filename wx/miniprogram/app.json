@@ -11,13 +11,6 @@
       ]
     },
     {
-      "root": "pages/cloud_notes",
-      "pages": [
-        "index",
-        "detail"
-      ]
-    },
-    {
       "root": "pages/expenses",
       "pages": [
         "index",

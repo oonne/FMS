@@ -5,12 +5,6 @@
       <view class="title">{{cloudExpenses.count}}<text class="title-intro">条</text></view>
     </view>
   </view>
-  <!-- <view class="row" wx:if="{{auth}}">
-    <view class="block cloud-notes" bind:tap="toPage" data-page="CLOUD_NOTES">
-      <view class="name">私人记事本</view>
-      <view class="title">{{cloudNotes.count}}<text class="title-intro">篇</text></view>
-    </view>
-  </view> -->
   <view class="row" wx:if="{{auth}}">
     <view class="block notes" bind:tap="toPage" data-page="NOTES">
       <view class="name">家庭记事本</view>

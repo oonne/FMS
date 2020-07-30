@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "家庭记事本",
   "usingComponents": {
-    "mp-loading": "/weui-miniprogram/loading/loading",
+    "mp-loading": "../../components/loading/loading",
     "add-btn": "../../components/add_btn/btn"
   }
 }
