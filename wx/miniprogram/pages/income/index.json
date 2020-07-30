@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "",
+  "navigationBarTitleText": "收入",
   "usingComponents": {
     "mp-loading": "../../components/loading/loading",
     "add-btn": "../../components/add_btn/btn"

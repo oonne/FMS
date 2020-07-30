@@ -1,5 +1,5 @@
 import { expenses } from '../../intercept/index'
-import { formatDate, auditRedirect } from '../../utils/util'
+import { formatDate } from '../../utils/util'
 
 Page({
   data: {
@@ -17,8 +17,6 @@ Page({
     remark: '',
   },
   onLoad(options){
-    auditRedirect()
-    
     const categoryList = getApp().globalData.category
     const categoryArray = categoryList.map(item=>item.category_name)
     const handlerList = getApp().globalData.handler

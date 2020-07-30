@@ -1,5 +1,4 @@
 import { password } from '../../intercept/index'
-import { auditRedirect } from '../../utils/util'
 
 Page({
   data: {
@@ -11,8 +10,6 @@ Page({
     remark: '',
   },
   onLoad(options){
-    auditRedirect()
-    
     if (options.id) {
       this.setData({
         isAdd: false,

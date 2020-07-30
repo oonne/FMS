@@ -1,6 +1,6 @@
 import config from '../../config/config'
 import route from '../../config/route'
-import { obj2url, auditRedirect } from '../../utils/util'
+import { obj2url } from '../../utils/util'
 import { password } from '../../intercept/index'
 
 
@@ -10,12 +10,6 @@ Page({
     pageCount: 0, //总条数
     page: 0, //当前页数
     loading: false, //是否正在加载数据
-  },
-  onLoad() {
-    auditRedirect()
-    wx.setNavigationBarTitle({
-      title: '密码'
-    })
   },
   onShow() {
     this.initData()

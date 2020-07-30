@@ -1,5 +1,4 @@
 import { note } from '../../intercept/index'
-import { auditRedirect } from '../../utils/util'
 
 Page({
   data: {
@@ -9,8 +8,6 @@ Page({
     content: '',
   },
   onLoad(options){
-    auditRedirect()
-    
     if (options.id) {
       this.setData({
         isAdd: false,

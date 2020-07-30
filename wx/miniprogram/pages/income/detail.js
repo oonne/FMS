@@ -1,5 +1,5 @@
 import { income } from '../../intercept/index'
-import { formatDate, auditRedirect } from '../../utils/util'
+import { formatDate } from '../../utils/util'
 
 Page({
   data: {
@@ -14,8 +14,6 @@ Page({
     remark: '',
   },
   onLoad(options){
-    auditRedirect()
-    
     const sourceList = getApp().globalData.source
     const sourceArray = sourceList.map(item=>item.income_source)
     if (options.id) {

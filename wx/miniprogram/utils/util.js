@@ -1,15 +1,3 @@
-import route from '../config/route'
-
-/**
- * 如果是审核中，直接跳回首页
- */
-export function auditRedirect() {
-  if (getApp().globalData.token) return
-  wx.redirectTo({
-    url: route.INDEX,
-  })
-}
-
 /**
  * 拼接url参数
  * @return key=value&key1=value1

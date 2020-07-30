@@ -1,5 +1,5 @@
 import { diary } from '../../intercept/index'
-import { formatDate, auditRedirect } from '../../utils/util'
+import { formatDate } from '../../utils/util'
 
 Page({
   data: {
@@ -9,8 +9,6 @@ Page({
     content: '',
   },
   onLoad(options){
-    auditRedirect()
-    
     if (options.id) {
       // 修改则读取数据
       this.setData({

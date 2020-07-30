@@ -41,9 +41,6 @@ Page({
   onShow () {
     this.getCloudNotes()
     this.getDatas()
-    wx.setNavigationBarTitle({
-      title: ''
-    })
   },
   /**
    * 登录(从数据预拉取拿结果，或者直接发起请求)
