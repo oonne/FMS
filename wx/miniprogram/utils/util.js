@@ -1,3 +1,15 @@
+import route from '../config/route'
+
+/**
+ * 如果是审核中，直接跳回首页
+ */
+export function auditRedirect() {
+  if (getApp().globalData.token) return
+  wx.redirectTo({
+    url: route.INDEX,
+  })
+}
+
 /**
  * 拼接url参数
  * @return key=value&key1=value1
@@ -20,7 +32,7 @@ export function obj2url(params) {
 }
 
 /**
- * @param 获取n位的数字随机数
+ * 获取n位的数字随机数
  */
 export function randomn(n) {
   if (n > 21) return null
