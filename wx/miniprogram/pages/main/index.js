@@ -34,7 +34,9 @@ Page({
     },
   },
   onLoad () {
-    this.login()
+    // this.login()
+    wx.showNavigationBarLoading()
+    this.fetchLogin()
   },
   onShow () {
     this.getCloudNotes()

@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "日记",
   "usingComponents": {
-    "mp-loading": "/miniprogram_npm/weui-miniprogram/loading/loading",
+    "mp-loading": "/weui-miniprogram/loading/loading",
     "add-btn": "../../components/add_btn/btn"
   }
 }
