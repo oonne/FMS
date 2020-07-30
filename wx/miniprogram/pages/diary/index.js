@@ -13,6 +13,9 @@ Page({
   },
   onLoad() {
     auditRedirect()
+    wx.setNavigationBarTitle({
+      title: '日记'
+    })
   },
   onShow() {
     this.initData()

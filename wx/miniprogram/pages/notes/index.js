@@ -13,6 +13,9 @@ Page({
   },
   onLoad() {
     auditRedirect()
+    wx.setNavigationBarTitle({
+      title: '记事本'
+    })
   },
   onShow() {
     this.initData()

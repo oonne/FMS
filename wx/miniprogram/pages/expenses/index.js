@@ -13,6 +13,9 @@ Page({
   },
   onLoad() {
     auditRedirect()
+    wx.setNavigationBarTitle({
+      title: '消费'
+    })
   },
   onShow() {
     this.initData()

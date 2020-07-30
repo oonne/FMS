@@ -13,6 +13,9 @@ Page({
   },
   onLoad() {
     auditRedirect()
+    wx.setNavigationBarTitle({
+      title: '收入'
+    })
   },
   onShow() {
     this.initData()

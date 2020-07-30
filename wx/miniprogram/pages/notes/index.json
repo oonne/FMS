@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "家庭记事本",
+  "navigationBarTitleText": "",
   "usingComponents": {
     "mp-loading": "../../components/loading/loading",
     "add-btn": "../../components/add_btn/btn"

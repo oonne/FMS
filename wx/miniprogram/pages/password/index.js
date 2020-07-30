@@ -13,6 +13,9 @@ Page({
   },
   onLoad() {
     auditRedirect()
+    wx.setNavigationBarTitle({
+      title: '密码'
+    })
   },
   onShow() {
     this.initData()
