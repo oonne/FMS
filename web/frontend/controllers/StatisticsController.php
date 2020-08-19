@@ -47,6 +47,7 @@ class StatisticsController extends Controller
         
         // 经手人
         $handler = Handler::find()
+                    ->orderBy(['id' => SORT_DESC])
                     ->select(['id', 'handler_name'])
                     ->all();
         // 分类
