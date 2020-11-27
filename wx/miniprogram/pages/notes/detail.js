@@ -6,14 +6,16 @@ Page({
     id: '',
     title: '',
     content: '',
+    loading: false,
   },
   onLoad(options){
     if (options.id) {
+      const content = wx.getStorageSync('note')
       this.setData({
         isAdd: false,
         id: options.id,
         title: decodeURIComponent(options.note_title),
-        content: decodeURIComponent(options.note_content),
+        content: content,
       })
       wx.setNavigationBarTitle({
         title: decodeURIComponent(options.note_title)
@@ -23,6 +25,11 @@ Page({
         title: '新增笔记'
       })
     }
+  },
+  onUnload(){
+    wx.removeStorage({
+      key: 'note'
+    })
   },
   /*
    * 保存按钮

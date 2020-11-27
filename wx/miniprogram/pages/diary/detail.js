@@ -11,11 +11,12 @@ Page({
   onLoad(options){
     if (options.id) {
       // 修改则读取数据
+      const content = wx.getStorageSync('diary')
       this.setData({
         isAdd: false,
         id: options.id,
         date: decodeURIComponent(options.diary_date),
-        content: decodeURIComponent(options.diary_content),
+        content: content,
       })
       wx.setNavigationBarTitle({
         title: decodeURIComponent(options.diary_date)
@@ -30,6 +31,11 @@ Page({
         title: today
       })
     }
+  },
+  onUnload(){
+    wx.removeStorage({
+      key: 'diary'
+    })
   },
   /*
    * 修改日期

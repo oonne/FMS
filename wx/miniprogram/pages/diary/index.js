@@ -62,10 +62,15 @@ Page({
   },
   toDetail(e) {
     const id = e.currentTarget.dataset.id
-    const diary = this.data.list.find(item=>item.id===id)
+    const diaryItem = this.data.list.find(item=>item.id===id)
+    wx.setStorageSync('diary', diaryItem.diary_content)
+    const params = {
+      id: diaryItem.id,
+      diary_date: diaryItem.diary_date,
+    }
 
     wx.navigateTo({
-      url: `${route.DIARY_DETAIL}?${obj2url(diary)}`,
+      url: `${route.DIARY_DETAIL}?${obj2url(params)}`,
     })
   },
 })

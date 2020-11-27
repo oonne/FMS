@@ -62,10 +62,15 @@ Page({
   },
   toDetail(e) {
     const id = e.currentTarget.dataset.id
-    const notes = this.data.list.find(item=>item.id===id)
+    const noteItem = this.data.list.find(item=>item.id===id)
+    wx.setStorageSync('note', noteItem.note_content)
+    const params = {
+      id: noteItem.id,
+      note_title: noteItem.note_title,
+    }
 
     wx.navigateTo({
-      url: `${route.NOTES_DETAIL}?${obj2url(notes)}`,
+      url: `${route.NOTES_DETAIL}?${obj2url(params)}`,
     })
   },
 })

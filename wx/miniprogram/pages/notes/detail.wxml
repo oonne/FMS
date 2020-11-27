@@ -15,6 +15,6 @@
     </view>
   </view>
 
-  <button class="form-btn form-btn-submit" form-type="submit">保存</button>
+  <button class="form-btn form-btn-submit" form-type="submit" disabled="{{loading}}">保存</button>
   <button wx:if="{{!isAdd}}" class="form-btn form-btn-delete" bind:tap="delete">删除</button>
 </form>
