@@ -7,6 +7,7 @@ Page({
     id: '',
     date: '',
     content: '',
+    loading: true,
   },
   onLoad(options){
     if (options.id) {
@@ -17,6 +18,7 @@ Page({
         id: options.id,
         date: decodeURIComponent(options.diary_date),
         content: content,
+        loading: false,
       })
       wx.setNavigationBarTitle({
         title: decodeURIComponent(options.diary_date)
@@ -26,6 +28,7 @@ Page({
       let today = formatDate(new Date(), 'yyyy-MM-dd')
       this.setData({
         date: today,
+        loading: false,
       })
       wx.setNavigationBarTitle({
         title: today
@@ -65,6 +68,9 @@ Page({
       return
     }
 
+    this.setData({
+      loading: true,
+    })
     if (this.data.isAdd) {
       this.add({date, content})
     } else {
@@ -81,6 +87,9 @@ Page({
       diary_date: params.date,
       diary_content: params.content,
     }).then(res=>{
+      this.setData({
+        loading: false,
+      })
       wx.navigateBack()
     })
   },
@@ -95,6 +104,9 @@ Page({
       diary_date: params.date,
       diary_content: params.content,
     }).then(res=>{
+      this.setData({
+        loading: false,
+      })
       wx.navigateBack()
     })
   },

@@ -15,6 +15,7 @@ Page({
     handler: 0,
     handlerName: '',
     remark: '',
+    loading: true,
   },
   onLoad(options){
     const categoryList = getApp().globalData.category
@@ -40,6 +41,7 @@ Page({
         handler: handlerIndex,
         handlerName: handlerName,
         remark: decodeURIComponent(options.expenses_remark),
+        loading: false,
       })
       wx.setNavigationBarTitle({
         title: decodeURIComponent(options.expenses_item)
@@ -55,6 +57,7 @@ Page({
         categoryName: categoryArray[0],
         handler: 0,
         handlerName: handlerArray[0],
+        loading: false,
       })
       wx.setNavigationBarTitle({
         title: '新增消费'
@@ -120,6 +123,9 @@ Page({
     const handlerList = getApp().globalData.handler
     const expenses_handler = handlerList[handler].id
 
+    this.setData({
+      loading: true,
+    })
     if (this.data.isAdd) {
       this.add({item, money, date, expenses_category, expenses_handler, remark})
     } else {
@@ -144,6 +150,9 @@ Page({
       expenses_handler: params.expenses_handler,
       expenses_remark: params.remark,
     }).then(res=>{
+      this.setData({
+        loading: false,
+      })
       wx.navigateBack()
     })
   },
@@ -166,6 +175,9 @@ Page({
       expenses_handler: params.expenses_handler,
       expenses_remark: params.remark,
     }).then(res=>{
+      this.setData({
+        loading: false,
+      })
       wx.navigateBack()
     })
   },

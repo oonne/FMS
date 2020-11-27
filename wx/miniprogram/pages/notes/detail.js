@@ -6,7 +6,7 @@ Page({
     id: '',
     title: '',
     content: '',
-    loading: false,
+    loading: true,
   },
   onLoad(options){
     if (options.id) {
@@ -16,6 +16,7 @@ Page({
         id: options.id,
         title: decodeURIComponent(options.note_title),
         content: content,
+        loading: false,
       })
       wx.setNavigationBarTitle({
         title: decodeURIComponent(options.note_title)
@@ -23,6 +24,9 @@ Page({
     } else {
       wx.setNavigationBarTitle({
         title: '新增笔记'
+      })
+      this.setData({
+        loading: false,
       })
     }
   },
@@ -51,6 +55,9 @@ Page({
       return
     }
 
+    this.setData({
+      loading: true,
+    })
     if (this.data.isAdd) {
       this.add({title, content})
     } else {
@@ -67,6 +74,9 @@ Page({
       note_title: params.title,
       note_content: params.content,
     }).then(res=>{
+      this.setData({
+        loading: false,
+      })
       wx.navigateBack()
     })
   },
@@ -81,6 +91,9 @@ Page({
       note_title: params.title,
       note_content: params.content,
     }).then(res=>{
+      this.setData({
+        loading: false,
+      })
       wx.navigateBack()
     })
   },

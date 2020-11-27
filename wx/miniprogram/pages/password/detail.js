@@ -8,6 +8,7 @@ Page({
     userName: '',
     password: '',
     remark: '',
+    loading: true,
   },
   onLoad(options){
     if (options.id) {
@@ -18,6 +19,7 @@ Page({
         userName: decodeURIComponent(options.user_name),
         password: decodeURIComponent(options.password),
         remark: decodeURIComponent(options.password_remark),
+        loading: false,
       })
       wx.setNavigationBarTitle({
         title: decodeURIComponent(options.password_item)
@@ -25,6 +27,9 @@ Page({
     } else {
       wx.setNavigationBarTitle({
         title: '新增密码'
+      })
+      this.setData({
+        loading: false,
       })
     }
   },
@@ -55,6 +60,9 @@ Page({
       return
     }
 
+    this.setData({
+      loading: true,
+    })
     if (this.data.isAdd) {
       this.add({item, userName, password, remark})
     } else {
@@ -75,6 +83,9 @@ Page({
       password: params.password,
       password_remark: params.remark,
     }).then(res=>{
+      this.setData({
+        loading: false,
+      })
       wx.navigateBack()
     })
   },
@@ -93,6 +104,9 @@ Page({
       password: params.password,
       password_remark: params.remark,
     }).then(res=>{
+      this.setData({
+        loading: false,
+      })
       wx.navigateBack()
     })
   },

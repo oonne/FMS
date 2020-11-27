@@ -12,6 +12,7 @@ Page({
     source: 0,
     sourceName: '',
     remark: '',
+    loading: true,
   },
   onLoad(options){
     const sourceList = getApp().globalData.source
@@ -30,6 +31,7 @@ Page({
         source: sourceIndex,
         sourceName: sourceName,
         remark: decodeURIComponent(options.income_remark),
+        loading: false,
       })
       wx.setNavigationBarTitle({
         title: decodeURIComponent(options.income_item)
@@ -42,6 +44,7 @@ Page({
         date: today,
         source: 0,
         sourceName: sourceArray[0],
+        loading: false,
       })
       wx.setNavigationBarTitle({
         title: '新增收入'
@@ -95,6 +98,9 @@ Page({
     const sourceList = getApp().globalData.source
     const income_source = sourceList[source].id
 
+    this.setData({
+      loading: true,
+    })
     if (this.data.isAdd) {
       this.add({item, money, date, income_source, remark})
     } else {
@@ -117,6 +123,9 @@ Page({
       income_source: params.income_source,
       income_remark: params.remark,
     }).then(res=>{
+      this.setData({
+        loading: false,
+      })
       wx.navigateBack()
     })
   },
@@ -137,6 +146,9 @@ Page({
       income_source: params.income_source,
       income_remark: params.remark,
     }).then(res=>{
+      this.setData({
+        loading: false,
+      })
       wx.navigateBack()
     })
   },
