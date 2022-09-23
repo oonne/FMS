@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "私人记账本",
-  "usingComponents": {
-    "mp-loading": "../../components/loading/loading",
-    "add-btn": "../../components/add_btn/btn"
-  }
-}

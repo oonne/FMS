@@ -5,14 +5,6 @@ import { statistics } from '../../intercept/index'
 Page({
   data: {
     auth: false, //是否有家庭权限
-    //云记账
-    cloudExpenses: {
-      count: 0, //总数量
-    },
-    //云笔记
-    cloudNotes: {
-      count: 0, //总数量
-    },
     // 消费
     expenses: {
       daily: 0, //当日统计
@@ -80,7 +72,6 @@ Page({
     getApp().globalData.name = result.res.data.nickname
 
     // 登录完成之后，刷新数据
-    this.getCloudNotes()
     this.getDatas()
     // 如果token有值，则显示更多功能
     if (getApp().globalData.token) {

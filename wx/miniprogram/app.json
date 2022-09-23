@@ -4,13 +4,6 @@
   ],
   "subPackages": [
     {
-      "root": "pages/cloud_expenses",
-      "pages": [
-        "index",
-        "detail"
-      ]
-    },
-    {
       "root": "pages/expenses",
       "pages": [
         "index",
