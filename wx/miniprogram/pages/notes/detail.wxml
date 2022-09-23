@@ -1,7 +1,11 @@
 <form bindsubmit="save">
   <view class="cells">
     <view class="cell cell-input">
-      <input name="title" placeholder="标题" value="{{title}}"/>
+      <input
+        name="title"
+        placeholder="标题"
+        value="{{title}}"
+      />
     </view>
     <view class="cell cell-textarea">
       <textarea
@@ -12,9 +16,10 @@
         value="{{content}}"
         maxlength="-1"
       />
-    </view>
+      </view>
   </view>
 
   <button class="form-btn form-btn-submit" form-type="submit" disabled="{{loading}}">保存</button>
   <button wx:if="{{!isAdd}}" class="form-btn form-btn-delete" bind:tap="delete">删除</button>
 </form>
+

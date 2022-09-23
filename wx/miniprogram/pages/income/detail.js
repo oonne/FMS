@@ -1,5 +1,5 @@
-import { income } from '../../intercept/index'
-import { formatDate } from '../../utils/util'
+import { income } from '../../intercept/index';
+import { formatDate } from '../../utils/util';
 
 Page({
   data: {
@@ -14,97 +14,99 @@ Page({
     remark: '',
     loading: true,
   },
-  onLoad(options){
-    const sourceList = getApp().globalData.source
-    const sourceArray = sourceList.map(item=>item.income_source)
+  onLoad(options) {
+    const sourceList = getApp().globalData.source;
+    const sourceArray = sourceList.map((item) => item.income_source);
     if (options.id) {
       // 修改则读取数据
-      const sourceIndex = sourceList.findIndex(item=>item.id==options.income_source)
-      const sourceName = sourceArray[sourceIndex]
+      const sourceIndex = sourceList.findIndex(
+        (item) => item.id == options.income_source,
+      );
+      const sourceName = sourceArray[sourceIndex];
       this.setData({
-        sourceArray: sourceArray,
+        sourceArray,
         isAdd: false,
         id: options.id,
         item: decodeURIComponent(options.income_item),
         money: decodeURIComponent(options.income_money),
         date: decodeURIComponent(options.income_date),
         source: sourceIndex,
-        sourceName: sourceName,
+        sourceName,
         remark: decodeURIComponent(options.income_remark),
         loading: false,
-      })
+      });
       wx.setNavigationBarTitle({
-        title: decodeURIComponent(options.income_item)
-      })
+        title: decodeURIComponent(options.income_item),
+      });
     } else {
       // 新增则默认今天
-      let today = formatDate(new Date(), 'yyyy-MM-dd')
+      const today = formatDate(new Date(), 'yyyy-MM-dd');
       this.setData({
-        sourceArray: sourceArray,
+        sourceArray,
         date: today,
         source: 0,
         sourceName: sourceArray[0],
         loading: false,
-      })
+      });
       wx.setNavigationBarTitle({
-        title: '新增收入'
-      })
+        title: '新增收入',
+      });
     }
   },
   /*
    * 修改日期
    */
-  changeDate (e) {
+  changeDate(e) {
     this.setData({
-      date: e.detail.value
-    })
+      date: e.detail.value,
+    });
   },
   /*
    * 修改来源
    */
-  changeSource (e) {
-    let value = e.detail.value
+  changeSource(e) {
+    const { value } = e.detail;
     this.setData({
       source: value,
       sourceName: this.data.sourceArray[value],
-    })
+    });
   },
   /*
    * 保存按钮
-   */ 
-  save(e){
-    const {item, money, date, source, remark} = e.detail.value
+   */
+  save(e) {
+    const { item, money, date, source, remark } = e.detail.value;
     if (!item) {
       wx.showToast({
         title: '请填写项目',
-        icon: 'none'
-      })
-      return
+        icon: 'none',
+      });
+      return;
     }
     if (!money) {
       wx.showToast({
         title: '请填写金额',
-        icon: 'none'
-      })
-      return
+        icon: 'none',
+      });
+      return;
     }
     if (!date) {
       wx.showToast({
         title: '请填写日期',
-        icon: 'none'
-      })
-      return
+        icon: 'none',
+      });
+      return;
     }
-    const sourceList = getApp().globalData.source
-    const income_source = sourceList[source].id
+    const sourceList = getApp().globalData.source;
+    const income_source = sourceList[source].id;
 
     this.setData({
       loading: true,
-    })
+    });
     if (this.data.isAdd) {
-      this.add({item, money, date, income_source, remark})
+      this.add({ item, money, date, income_source, remark });
     } else {
-      this.update({item, money, date, income_source, remark})
+      this.update({ item, money, date, income_source, remark });
     }
   },
   /*
@@ -115,19 +117,21 @@ Page({
    * @params {object} params.income_source 来源
    * @params {object} params.remark 备注
    */
-  add(params){
-    income.add({
-      income_item: params.item,
-      income_money: params.money,
-      income_date: params.date,
-      income_source: params.income_source,
-      income_remark: params.remark,
-    }).then(res=>{
-      this.setData({
-        loading: false,
+  add(params) {
+    income
+      .add({
+        income_item: params.item,
+        income_money: params.money,
+        income_date: params.date,
+        income_source: params.income_source,
+        income_remark: params.remark,
       })
-      wx.navigateBack()
-    })
+      .then((res) => {
+        this.setData({
+          loading: false,
+        });
+        wx.navigateBack();
+      });
   },
   /*
    * 修改
@@ -137,38 +141,42 @@ Page({
    * @params {object} params.income_source 来源
    * @params {object} params.remark 备注
    */
-  update(params){
-    income.update({
-      id: this.data.id,
-      income_item: params.item,
-      income_money: params.money,
-      income_date: params.date,
-      income_source: params.income_source,
-      income_remark: params.remark,
-    }).then(res=>{
-      this.setData({
-        loading: false,
+  update(params) {
+    income
+      .update({
+        id: this.data.id,
+        income_item: params.item,
+        income_money: params.money,
+        income_date: params.date,
+        income_source: params.income_source,
+        income_remark: params.remark,
       })
-      wx.navigateBack()
-    })
+      .then((res) => {
+        this.setData({
+          loading: false,
+        });
+        wx.navigateBack();
+      });
   },
   /*
    * 删除
    */
-  delete(){
+  delete() {
     wx.showModal({
       title: `确认删除${this.data.item}?`,
       confirmText: '删除',
       confirmColor: '#F00',
-      success: res=>{
+      success: (res) => {
         if (res.confirm) {
-          income.delete({
-            id: this.data.id
-          }).then(res=>{
-            wx.navigateBack()
-          })
+          income
+            .delete({
+              id: this.data.id,
+            })
+            .then((res) => {
+              wx.navigateBack();
+            });
         }
-      }
-    })
+      },
+    });
   },
-})
+});

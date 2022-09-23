@@ -1,9 +1,16 @@
 <view class="index">
-  <view wx:for="{{list}}" wx:key="id" class="item" data-id="{{item.id}}" bind:tap="toDetail">
+  <view
+    wx:for="{{list}}"
+    wx:key="id"
+    class="item"
+    data-id="{{item.id}}"
+    bind:tap="toDetail"
+  >
     <view class="title">{{item.diary_date}}</view>
     <view class="content">{{item.diary_content}}</view>
   </view>
   <mp-loading wx:if="{{loading}}" type="circle"></mp-loading>
 </view>
 
-<add-btn page="DIARY_DETAIL" bind:add="initData"/>
+<add-btn page="DIARY_DETAIL" bind:add="initData" />
+

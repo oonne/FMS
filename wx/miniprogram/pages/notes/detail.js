@@ -1,4 +1,4 @@
-import { note } from '../../intercept/index'
+import { note } from '../../intercept/index';
 
 Page({
   data: {
@@ -8,60 +8,60 @@ Page({
     content: '',
     loading: true,
   },
-  onLoad(options){
+  onLoad(options) {
     if (options.id) {
-      const content = wx.getStorageSync('note')
+      const content = wx.getStorageSync('note');
       this.setData({
         isAdd: false,
         id: options.id,
         title: decodeURIComponent(options.note_title),
-        content: content,
+        content,
         loading: false,
-      })
+      });
       wx.setNavigationBarTitle({
-        title: decodeURIComponent(options.note_title)
-      })
+        title: decodeURIComponent(options.note_title),
+      });
     } else {
       wx.setNavigationBarTitle({
-        title: '新增笔记'
-      })
+        title: '新增笔记',
+      });
       this.setData({
         loading: false,
-      })
+      });
     }
   },
-  onUnload(){
+  onUnload() {
     wx.removeStorage({
-      key: 'note'
-    })
+      key: 'note',
+    });
   },
   /*
    * 保存按钮
-   */ 
-  save(e){
-    const {title, content} = e.detail.value
+   */
+  save(e) {
+    const { title, content } = e.detail.value;
     if (!title) {
       wx.showToast({
         title: '请填写标题',
-        icon: 'none'
-      })
-      return
+        icon: 'none',
+      });
+      return;
     }
     if (!content) {
       wx.showToast({
         title: '请填写内容',
-        icon: 'none'
-      })
-      return
+        icon: 'none',
+      });
+      return;
     }
 
     this.setData({
       loading: true,
-    })
+    });
     if (this.data.isAdd) {
-      this.add({title, content})
+      this.add({ title, content });
     } else {
-      this.update({title, content})
+      this.update({ title, content });
     }
   },
   /*
@@ -69,51 +69,57 @@ Page({
    * @params {string} params.title 标题
    * @params {object} params.content 内容
    */
-  add(params){
-    note.add({
-      note_title: params.title,
-      note_content: params.content,
-    }).then(res=>{
-      this.setData({
-        loading: false,
+  add(params) {
+    note
+      .add({
+        note_title: params.title,
+        note_content: params.content,
       })
-      wx.navigateBack()
-    })
+      .then((res) => {
+        this.setData({
+          loading: false,
+        });
+        wx.navigateBack();
+      });
   },
   /*
    * 修改
    * @params {string} params.title 标题
    * @params {object} params.content 内容
    */
-  update(params){
-    note.update({
-      id: this.data.id,
-      note_title: params.title,
-      note_content: params.content,
-    }).then(res=>{
-      this.setData({
-        loading: false,
+  update(params) {
+    note
+      .update({
+        id: this.data.id,
+        note_title: params.title,
+        note_content: params.content,
       })
-      wx.navigateBack()
-    })
+      .then((res) => {
+        this.setData({
+          loading: false,
+        });
+        wx.navigateBack();
+      });
   },
   /*
    * 删除
    */
-  delete(){
+  delete() {
     wx.showModal({
       title: `确认删除${this.data.title}?`,
       confirmText: '删除',
       confirmColor: '#F00',
-      success: res=>{
+      success: (res) => {
         if (res.confirm) {
-          note.delete({
-            id: this.data.id
-          }).then(res=>{
-            wx.navigateBack()
-          })
+          note
+            .delete({
+              id: this.data.id,
+            })
+            .then((res) => {
+              wx.navigateBack();
+            });
         }
-      }
-    })
+      },
+    });
   },
-})
+});

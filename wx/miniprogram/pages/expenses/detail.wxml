@@ -2,27 +2,53 @@
   <view class="cells">
     <view class="cell cell-input">
       <view class="cell-attr">项目</view>
-      <input name="item" placeholder="项目" value="{{item}}"/>
+      <input
+        name="item"
+        placeholder="项目"
+        value="{{item}}"
+      />
     </view>
     <view class="cell cell-input">
       <view class="cell-attr">金额</view>
-      <input name="money" type="digit" placeholder="金额" value="{{money}}"/>
+      <input
+        name="money"
+        type="digit"
+        placeholder="金额"
+        value="{{money}}"
+      />
     </view>
     <view class="cell cell-picker">
       <view class="cell-attr">日期</view>
-      <picker mode="date" bindchange="changeDate" name="date" value="{{date}}">
+      <picker
+        mode="date"
+        bindchange="changeDate"
+        name="date"
+        value="{{date}}"
+      >
         {{date}}
       </picker>
     </view>
     <view class="cell cell-picker">
       <view class="cell-attr">分类</view>
-      <picker mode="selector" bindchange="changeCategory" name="category" value="{{category}}" range="{{categoryArray}}">
+      <picker
+        mode="selector"
+        bindchange="changeCategory"
+        name="category"
+        value="{{category}}"
+        range="{{categoryArray}}"
+      >
         {{categoryName}}
       </picker>
     </view>
     <view class="cell cell-picker">
       <view class="cell-attr">经手人</view>
-      <picker mode="selector" bindchange="changeHandler" name="handler" value="{{handler}}" range="{{handlerArray}}">
+      <picker
+        mode="selector"
+        bindchange="changeHandler"
+        name="handler"
+        value="{{handler}}"
+        range="{{handlerArray}}"
+      >
         {{handlerName}}
       </picker>
     </view>
@@ -35,9 +61,10 @@
         value="{{remark}}"
         maxlength="-1"
       />
-    </view>
+      </view>
   </view>
 
   <button class="form-btn form-btn-submit" form-type="submit" disabled="{{loading}}">保存</button>
   <button wx:if="{{!isAdd}}" class="form-btn form-btn-delete" bind:tap="delete">删除</button>
 </form>
+

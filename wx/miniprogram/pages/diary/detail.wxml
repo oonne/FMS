@@ -1,7 +1,12 @@
 <form bindsubmit="save">
   <view class="cells">
     <view class="cell cell-picker">
-      <picker mode="date" bindchange="changeDate" name="date" value="{{date}}">
+      <picker
+        mode="date"
+        bindchange="changeDate"
+        name="date"
+        value="{{date}}"
+      >
         {{date}}
       </picker>
     </view>
@@ -14,9 +19,10 @@
         value="{{content}}"
         maxlength="-1"
       />
-    </view>
+      </view>
   </view>
 
   <button class="form-btn form-btn-submit" form-type="submit" disabled="{{loading}}">保存</button>
   <button wx:if="{{!isAdd}}" class="form-btn form-btn-delete" bind:tap="delete">删除</button>
 </form>
+

@@ -2,15 +2,27 @@
   <view class="cells">
     <view class="cell cell-input">
       <view class="cell-attr">密码项</view>
-      <input name="item" placeholder="密码项" value="{{item}}"/>
+      <input
+        name="item"
+        placeholder="密码项"
+        value="{{item}}"
+      />
     </view>
     <view class="cell cell-input">
       <view class="cell-attr">用户名</view>
-      <input name="userName" placeholder="用户名" value="{{userName}}"/>
+      <input
+        name="userName"
+        placeholder="用户名"
+        value="{{userName}}"
+      />
     </view>
     <view class="cell cell-input">
       <view class="cell-attr">密码</view>
-      <input name="password" placeholder="密码" value="{{password}}"/>
+      <input
+        name="password"
+        placeholder="密码"
+        value="{{password}}"
+      />
     </view>
     <view class="cell cell-textarea">
       <textarea
@@ -21,9 +33,10 @@
         value="{{remark}}"
         maxlength="-1"
       />
-    </view>
+      </view>
   </view>
 
   <button class="form-btn form-btn-submit" form-type="submit" disabled="{{loading}}">保存</button>
   <button wx:if="{{!isAdd}}" class="form-btn form-btn-delete" bind:tap="delete">删除</button>
 </form>
+
