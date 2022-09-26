@@ -84,7 +84,7 @@ Page({
         password: params.password,
         password_remark: params.remark,
       })
-      .then((res) => {
+      .then(() => {
         this.setData({
           loading: false,
         });
@@ -107,7 +107,7 @@ Page({
         password: params.password,
         password_remark: params.remark,
       })
-      .then((res) => {
+      .then(() => {
         this.setData({
           loading: false,
         });
@@ -122,16 +122,14 @@ Page({
       title: `确认删除${this.data.item}?`,
       confirmText: '删除',
       confirmColor: '#F00',
-      success: (res) => {
-        if (res.confirm) {
-          password
-            .delete({
-              id: this.data.id,
-            })
-            .then((res) => {
-              wx.navigateBack();
-            });
+      success: async (res) => {
+        if (!res.confirm) {
+          return;
         }
+        await password.delete({
+          id: this.data.id,
+        });
+        wx.navigateBack();
       },
     });
   },

@@ -72,7 +72,7 @@ Page({
     const sourceList = getApp().globalData.source;
     return list.map((item) => {
       const source = sourceList.find(
-        (sourceItem) => sourceItem.id == item.income_source,
+        (sourceItem) => sourceItem.id === item.income_source,
       );
       item.source = source.income_source;
       return item;

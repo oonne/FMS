@@ -122,16 +122,14 @@ Page({
       title: `确认删除${this.data.date}?`,
       confirmText: '删除',
       confirmColor: '#F00',
-      success: (res) => {
-        if (res.confirm) {
-          diary
-            .delete({
-              id: this.data.id,
-            })
-            .then(() => {
-              wx.navigateBack();
-            });
+      success: async (res) => {
+        if (!res.confirm) {
+          return;
         }
+        await diary.delete({
+          id: this.data.id,
+        });
+        wx.navigateBack();
       },
     });
   },

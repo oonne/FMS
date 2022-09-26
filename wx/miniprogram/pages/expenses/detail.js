@@ -25,11 +25,11 @@ Page({
     if (options.id) {
       // 修改则读取数据
       const categoryIndex = categoryList.findIndex(
-        (item) => item.id == options.expenses_category,
+        (item) => item.id === Number(options.expenses_category),
       );
       const categoryName = categoryArray[categoryIndex];
       const handlerIndex = handlerList.findIndex(
-        (item) => item.id == options.expenses_handler,
+        (item) => item.id === Number(options.expenses_handler),
       );
       const handlerName = handlerArray[handlerIndex];
       this.setData({
@@ -123,9 +123,9 @@ Page({
       return;
     }
     const categoryList = getApp().globalData.category;
-    const expenses_category = categoryList[category].id;
+    const expensesCategory = categoryList[category].id;
     const handlerList = getApp().globalData.handler;
-    const expenses_handler = handlerList[handler].id;
+    const expensesHandler = handlerList[handler].id;
 
     this.setData({
       loading: true,
@@ -135,8 +135,8 @@ Page({
         item,
         money,
         date,
-        expenses_category,
-        expenses_handler,
+        expensesCategory,
+        expensesHandler,
         remark,
       });
     } else {
@@ -144,8 +144,8 @@ Page({
         item,
         money,
         date,
-        expenses_category,
-        expenses_handler,
+        expensesCategory,
+        expensesHandler,
         remark,
       });
     }
@@ -155,8 +155,8 @@ Page({
    * @params {string} params.item 项目
    * @params {object} params.money 金额
    * @params {object} params.date 日期
-   * @params {object} params.expenses_category 分类
-   * @params {object} params.expenses_handler 经手人
+   * @params {object} params.expensesCategory 分类
+   * @params {object} params.expensesHandler 经手人
    * @params {object} params.remark 备注
    */
   add(params) {
@@ -165,11 +165,11 @@ Page({
         expenses_item: params.item,
         expenses_money: params.money,
         expenses_date: params.date,
-        expenses_category: params.expenses_category,
-        expenses_handler: params.expenses_handler,
+        expenses_category: params.expensesCategory,
+        expenses_handler: params.expensesHandler,
         expenses_remark: params.remark,
       })
-      .then((res) => {
+      .then(() => {
         this.setData({
           loading: false,
         });
@@ -181,8 +181,8 @@ Page({
    * @params {string} params.item 项目
    * @params {object} params.money 金额
    * @params {object} params.date 日期
-   * @params {object} params.expenses_category 分类
-   * @params {object} params.expenses_handler 经手人
+   * @params {object} params.expensesCategory 分类
+   * @params {object} params.expensesHandler 经手人
    * @params {object} params.remark 备注
    */
   update(params) {
@@ -192,11 +192,11 @@ Page({
         expenses_item: params.item,
         expenses_money: params.money,
         expenses_date: params.date,
-        expenses_category: params.expenses_category,
-        expenses_handler: params.expenses_handler,
+        expenses_category: params.expensesCategory,
+        expenses_handler: params.expensesHandler,
         expenses_remark: params.remark,
       })
-      .then((res) => {
+      .then(() => {
         this.setData({
           loading: false,
         });
@@ -211,16 +211,14 @@ Page({
       title: `确认删除${this.data.item}?`,
       confirmText: '删除',
       confirmColor: '#F00',
-      success: (res) => {
-        if (res.confirm) {
-          expenses
-            .delete({
-              id: this.data.id,
-            })
-            .then((res) => {
-              wx.navigateBack();
-            });
+      success: async (res) => {
+        if (!res.confirm) {
+          return;
         }
+        await expenses.delete({
+          id: this.data.id,
+        });
+        wx.navigateBack();
       },
     });
   },

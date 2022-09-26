@@ -75,7 +75,7 @@ Page({
         note_title: params.title,
         note_content: params.content,
       })
-      .then((res) => {
+      .then(() => {
         this.setData({
           loading: false,
         });
@@ -94,7 +94,7 @@ Page({
         note_title: params.title,
         note_content: params.content,
       })
-      .then((res) => {
+      .then(() => {
         this.setData({
           loading: false,
         });
@@ -109,16 +109,14 @@ Page({
       title: `确认删除${this.data.title}?`,
       confirmText: '删除',
       confirmColor: '#F00',
-      success: (res) => {
-        if (res.confirm) {
-          note
-            .delete({
-              id: this.data.id,
-            })
-            .then((res) => {
-              wx.navigateBack();
-            });
+      success: async (res) => {
+        if (!res.confirm) {
+          return;
         }
+        await note.delete({
+          id: this.data.id,
+        });
+        wx.navigateBack();
       },
     });
   },

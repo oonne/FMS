@@ -41,7 +41,7 @@ Page({
     if (page >= pageCount) {
       return;
     }
-    page++;
+    page += 1;
     this.setData({
       loading: true,
     });

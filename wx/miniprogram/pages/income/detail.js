@@ -20,7 +20,7 @@ Page({
     if (options.id) {
       // 修改则读取数据
       const sourceIndex = sourceList.findIndex(
-        (item) => item.id == options.income_source,
+        (item) => item.id === Number(options.income_source),
       );
       const sourceName = sourceArray[sourceIndex];
       this.setData({
@@ -98,15 +98,15 @@ Page({
       return;
     }
     const sourceList = getApp().globalData.source;
-    const income_source = sourceList[source].id;
+    const incomeSource = sourceList[source].id;
 
     this.setData({
       loading: true,
     });
     if (this.data.isAdd) {
-      this.add({ item, money, date, income_source, remark });
+      this.add({ item, money, date, incomeSource, remark });
     } else {
-      this.update({ item, money, date, income_source, remark });
+      this.update({ item, money, date, incomeSource, remark });
     }
   },
   /*
@@ -114,7 +114,7 @@ Page({
    * @params {string} params.item 项目
    * @params {object} params.money 金额
    * @params {object} params.date 日期
-   * @params {object} params.income_source 来源
+   * @params {object} params.incomeSource 来源
    * @params {object} params.remark 备注
    */
   add(params) {
@@ -123,10 +123,10 @@ Page({
         income_item: params.item,
         income_money: params.money,
         income_date: params.date,
-        income_source: params.income_source,
+        income_source: params.incomeSource,
         income_remark: params.remark,
       })
-      .then((res) => {
+      .then(() => {
         this.setData({
           loading: false,
         });
@@ -138,7 +138,7 @@ Page({
    * @params {string} params.item 项目
    * @params {object} params.money 金额
    * @params {object} params.date 日期
-   * @params {object} params.income_source 来源
+   * @params {object} params.incomeSource 来源
    * @params {object} params.remark 备注
    */
   update(params) {
@@ -148,10 +148,10 @@ Page({
         income_item: params.item,
         income_money: params.money,
         income_date: params.date,
-        income_source: params.income_source,
+        income_source: params.incomeSource,
         income_remark: params.remark,
       })
-      .then((res) => {
+      .then(() => {
         this.setData({
           loading: false,
         });
@@ -166,16 +166,14 @@ Page({
       title: `确认删除${this.data.item}?`,
       confirmText: '删除',
       confirmColor: '#F00',
-      success: (res) => {
-        if (res.confirm) {
-          income
-            .delete({
-              id: this.data.id,
-            })
-            .then((res) => {
-              wx.navigateBack();
-            });
+      success: async (res) => {
+        if (!res.confirm) {
+          return;
         }
+        await income.delete({
+          id: this.data.id,
+        });
+        wx.navigateBack();
       },
     });
   },

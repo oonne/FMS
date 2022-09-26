@@ -41,7 +41,7 @@ Page({
     if (page >= pageCount) {
       return;
     }
-    page++;
+    page += 1;
     this.setData({
       loading: true,
     });
@@ -73,11 +73,11 @@ Page({
     const handlerList = getApp().globalData.handler;
     return list.map((item) => {
       const category = categoryList.find(
-        (categoryItem) => categoryItem.id == item.expenses_category,
+        (categoryItem) => categoryItem.id === item.expenses_category,
       );
       item.category = category.category_name;
       const handler = handlerList.find(
-        (handlerItem) => handlerItem.id == item.expenses_handler,
+        (handlerItem) => handlerItem.id === item.expenses_handler,
       );
       item.handler = handler.handler_name;
       return item;
