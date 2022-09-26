@@ -1,6 +1,6 @@
 import route from '../../config/route';
 import { formatDate } from '../../utils/util';
-import { statistics } from '../../intercept/index';
+import { user, statistics } from '../../intercept/index';
 
 Page({
   data: {
@@ -24,37 +24,50 @@ Page({
     },
   },
   onLoad() {
-    wx.showNavigationBarLoading();
-    this.fetchLogin();
+    this.login();
   },
   onShow() {
     this.getDatas();
   },
-  // 发起登录请求
-  fetchLogin() {
-    wx.cloud
-      .callFunction({
-        name: 'login',
-      })
-      .then((res) => {
-        this.loginSuccess(res.result);
-      });
-  },
-  // 登录接口返回之后的逻辑
-  loginSuccess(result) {
-    wx.hideNavigationBarLoading();
-    getApp().globalData.openId = result.wxContext.OPENID;
-    getApp().globalData.token = result.res.data.access_token;
-    getApp().globalData.name = result.res.data.nickname;
-
-    // 先存在本地，方便以后直接从本地获取
-    wx.setStorage({
-      key: 'openId',
-      data: result.wxContext.OPENID,
+  /**
+   * 登录流程
+   */
+  // 旧的登录云函数，现只用来拿openId
+  async getOpenId() {
+    const res = await wx.cloud.callFunction({
+      name: 'login',
     });
 
+    const onenId = res.result.wxContext.OPENID;
+    wx.setStorage({
+      key: 'openId',
+      data: onenId,
+    });
+    return onenId;
+  },
+  // 登录
+  async login() {
+    wx.showLoading({
+      mask: true,
+    });
+
+    // 获取 openId
+    const openId = wx.getStorageSync('openId') || (await this.getOpenId());
+    getApp().globalData.openId = openId;
+
+    // 登录接口
+    const {
+      data: { access_token: accessToken, nickname },
+    } = await user.login({
+      openid: openId,
+    });
+
+    getApp().globalData.token = accessToken;
+    getApp().globalData.name = nickname;
+
     // 登录完成之后，刷新数据
-    this.getDatas();
+    await this.getDatas();
+    wx.hideLoading();
   },
 
   /**
@@ -66,9 +79,6 @@ Page({
       return;
     }
 
-    wx.showLoading({
-      mask: true,
-    });
     const res = await statistics.index();
 
     const {
@@ -87,8 +97,6 @@ Page({
     getApp().globalData.source = source;
     getApp().globalData.handler = handler;
     getApp().globalData.category = category;
-
-    wx.hideLoading();
   },
 
   /**
