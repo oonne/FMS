@@ -25,38 +25,14 @@ Page({
     },
   },
   onLoad() {
-    // this.login()
     wx.showNavigationBarLoading();
     this.fetchLogin();
   },
   onShow() {
-    this.getCloudNotes();
     this.getDatas();
-  },
-  /**
-   * 登录(从数据预拉取拿结果，或者直接发起请求)
-   */
-  login() {
-    wx.showNavigationBarLoading();
-    if (wx.getBackgroundFetchData) {
-      // 数据预加载
-      wx.getBackgroundFetchData({
-        fetchType: 'pre',
-        success: (res) => {
-          const data = JSON.parse(res.fetchedData);
-          this.loginSuccess(data);
-        },
-        fail: () => {
-          this.fetchLogin();
-        },
-      });
-    } else {
-      this.fetchLogin();
-    }
   },
   // 直接发起登录请求
   fetchLogin() {
-    console.warn('直接发起登录请求');
     wx.cloud
       .callFunction({
         name: 'login',
@@ -71,6 +47,12 @@ Page({
     getApp().globalData.openId = result.wxContext.OPENID;
     getApp().globalData.token = result.res.data.access_token;
     getApp().globalData.name = result.res.data.nickname;
+
+    // 先存在本地，方便以后直接从本地获取
+    wx.setStorage({
+      key: 'openId',
+      data: result.wxContext.OPENID,
+    });
 
     // 登录完成之后，刷新数据
     this.getDatas();
@@ -88,36 +70,6 @@ Page({
   // 下拉页面时，刷新数据
   onPullDownRefresh() {
     this.fetchLogin();
-  },
-  // 获取云数据库统计信息
-  getCloudNotes() {
-    if (!getApp().globalData.openId) {
-      return;
-    }
-    const db = wx.cloud.database();
-    const notes = db.collection('notes');
-    const expenses = db.collection('expenses');
-
-    notes
-      .where({
-        _openid: getApp().globalData.openId,
-      })
-      .count()
-      .then((res) => {
-        this.setData({
-          'cloudNotes.count': res.total,
-        });
-      });
-    expenses
-      .where({
-        _openid: getApp().globalData.openId,
-      })
-      .count()
-      .then((res) => {
-        this.setData({
-          'cloudExpenses.count': res.total,
-        });
-      });
   },
   // 获取统计数据和基础数据
   getDatas() {
