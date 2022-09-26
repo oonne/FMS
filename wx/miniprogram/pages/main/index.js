@@ -4,7 +4,6 @@ import { statistics } from '../../intercept/index';
 
 Page({
   data: {
-    auth: false, // 是否有家庭权限
     // 消费
     expenses: {
       daily: 0, // 当日统计
@@ -31,7 +30,7 @@ Page({
   onShow() {
     this.getDatas();
   },
-  // 直接发起登录请求
+  // 发起登录请求
   fetchLogin() {
     wx.cloud
       .callFunction({
@@ -56,45 +55,40 @@ Page({
 
     // 登录完成之后，刷新数据
     this.getDatas();
-    // 如果token有值，则显示更多功能
-    if (getApp().globalData.token) {
-      this.setData({
-        auth: true,
-      });
-    }
   },
 
   /**
    * 刷新数据
    */
-  // 下拉页面时，刷新数据
-  onPullDownRefresh() {
-    this.fetchLogin();
-  },
   // 获取统计数据和基础数据
-  getDatas() {
+  async getDatas() {
     if (!getApp().globalData.token) {
       return;
     }
-    statistics.index().then((res) => {
-      const {
-        dailyExpenses,
-        noteCount,
-        passwordCount,
-        source,
-        handler,
-        category,
-      } = res.Data;
-      this.setData({
-        'expenses.daily': dailyExpenses || 0,
-        'notes.count': noteCount || 0,
-        'password.count': passwordCount || 0,
-      });
-      getApp().globalData.source = source;
-      getApp().globalData.handler = handler;
-      getApp().globalData.category = category;
+
+    wx.showLoading({
+      mask: true,
     });
-    wx.stopPullDownRefresh();
+    const res = await statistics.index();
+
+    const {
+      dailyExpenses,
+      noteCount,
+      passwordCount,
+      source,
+      handler,
+      category,
+    } = res.Data;
+    this.setData({
+      'expenses.daily': dailyExpenses || 0,
+      'notes.count': noteCount || 0,
+      'password.count': passwordCount || 0,
+    });
+    getApp().globalData.source = source;
+    getApp().globalData.handler = handler;
+    getApp().globalData.category = category;
+
+    wx.hideLoading();
   },
 
   /**
