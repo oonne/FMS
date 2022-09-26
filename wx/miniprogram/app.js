@@ -1,4 +1,4 @@
-import config from 'config/config'
+import config from 'config/config';
 
 App({
   globalData: {
@@ -10,36 +10,38 @@ App({
     handler: [],
     category: [],
   },
-  onLaunch: function (options) {
-    console.log("-------------Launch", config.version, options)
+  onLaunch(options) {
+    console.log('-------------Launch', config.version, options);
     // 初始化云函数环境
-    this.cloudInit()
+    this.cloudInit();
     // 检查更新版本
-    this.updataVersion()
+    this.updateVersion();
   },
-  /*初始化云函数环境*/ 
-  cloudInit () {
+  /* 初始化云函数环境 */
+  cloudInit() {
     wx.cloud.init({
       env: config.cloudEnv,
       traceUser: true,
-    })
+    });
   },
-  /*更新版本*/ 
-  updataVersion () {
-    try {
-      const updateManager = wx.getUpdateManager()
-      updateManager.onUpdateReady(function () {
-        setTimeout(function () {
-          wx.showModal({
-            content: '新版本已经准备好，点击重启应用',
-            showCancel: false,
-            success: function (res) {
-              // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
-              updateManager.applyUpdate()
-            }
-          })
-        }, 2000)
-      })
-    } catch (e) {}
+  /* 更新版本 */
+  updateVersion() {
+    const updateManager = wx.getUpdateManager();
+
+    updateManager.onUpdateReady(async () => {
+      wx.showModal({
+        content: '新版本已经准备好，点击重启应用',
+        showCancel: false,
+        success() {
+          // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+          updateManager.applyUpdate();
+        },
+      });
+    });
+
+    // 更新失败
+    updateManager.onUpdateFailed(async () => {
+      console.error('更新失败，请重新打开小程序');
+    });
   },
-})
+});

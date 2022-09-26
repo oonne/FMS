@@ -12,14 +12,14 @@ Component({
       type: Boolean,
       value: true,
       observer(newValue) {
-        this._computedStyle(newValue, this.data.animated);
+        this.computedStyle(newValue, this.data.animated);
       },
     },
     animated: {
       type: Boolean,
       value: false,
       observer(newValue) {
-        this._computedStyle(this.data.show, newValue);
+        this.computedStyle(this.data.show, newValue);
       },
     },
     duration: {
@@ -43,14 +43,14 @@ Component({
     displayStyle: 'none',
   },
   methods: {
-    _computedStyle(show, animated) {
+    computedStyle(show, animated) {
       if (!show) {
         if (!animated) {
           this.setData({
             displayStyle: 'none',
           });
         } else {
-          this._startAnimation();
+          this.startAnimation();
         }
       } else {
         this.setData({
@@ -58,7 +58,7 @@ Component({
         });
       }
     },
-    _startAnimation() {
+    startAnimation() {
       setTimeout(() => {
         const { data } = this;
         const animation = data.animationInstance;
@@ -77,7 +77,7 @@ Component({
         timingFunction: 'ease',
       });
       this.setData({ animationInstance });
-      this._computedStyle(this.data.show, this.data.animated);
+      this.computedStyle(this.data.show, this.data.animated);
     },
   },
 });

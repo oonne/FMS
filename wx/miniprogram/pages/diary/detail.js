@@ -88,7 +88,7 @@ Page({
         diary_date: params.date,
         diary_content: params.content,
       })
-      .then((res) => {
+      .then(() => {
         this.setData({
           loading: false,
         });
@@ -107,7 +107,7 @@ Page({
         diary_date: params.date,
         diary_content: params.content,
       })
-      .then((res) => {
+      .then(() => {
         this.setData({
           loading: false,
         });
@@ -128,7 +128,7 @@ Page({
             .delete({
               id: this.data.id,
             })
-            .then((res) => {
+            .then(() => {
               wx.navigateBack();
             });
         }

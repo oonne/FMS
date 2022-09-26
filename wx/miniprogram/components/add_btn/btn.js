@@ -25,12 +25,6 @@ Component({
     setColor() {
       let color = '';
       switch (this.properties.page) {
-        case 'CLOUD_NOTES_DETAIL':
-          color = 'cloud-notes';
-          break;
-        case 'CLOUD_EXPENSES_DETAIL':
-          color = 'cloud-expenses';
-          break;
         case 'NOTES_DETAIL':
           color = 'notes';
           break;
@@ -46,6 +40,7 @@ Component({
         case 'EXPENSES_DETAIL':
           color = 'expenses';
           break;
+        default:
       }
       this.setData({
         color,

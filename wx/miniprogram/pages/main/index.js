@@ -46,7 +46,7 @@ Page({
           const data = JSON.parse(res.fetchedData);
           this.loginSuccess(data);
         },
-        fail: (res) => {
+        fail: () => {
           this.fetchLogin();
         },
       });

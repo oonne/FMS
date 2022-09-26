@@ -1,31 +1,32 @@
-import request from '../request'
+import request from '../request';
+
 export default {
   index(data) {
     return request({
       method: 'GET',
       url: '/note/index',
-      data: data
-    })
+      data,
+    });
   },
   add(data) {
     return request({
       method: 'POST',
       url: '/note/add',
-      data: data
-    })
+      data,
+    });
   },
   update(data) {
     return request({
       method: 'POST',
       url: '/note/update',
-      data: data
-    })
+      data,
+    });
   },
   delete(data) {
     return request({
       method: 'POST',
       url: '/note/delete',
-      data: data
-    })
+      data,
+    });
   },
-}
+};

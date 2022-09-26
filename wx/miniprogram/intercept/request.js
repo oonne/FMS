@@ -1,12 +1,12 @@
-import config from '../config/config'
+import config from '../config/config';
 
 /*
  * 发起http请求
- */ 
+ */
 const request = (opt) => {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: config.reqApi+opt.url,
+      url: config.reqApi + opt.url,
       data: opt.data,
       header: {
         'X-Auth-Token': getApp().globalData.token,
@@ -15,18 +15,18 @@ const request = (opt) => {
       method: opt.method,
       dataType: 'json',
       enableHttp2: true,
-      success(res){
-        if (res.statusCode == 200) {
-          resolve(res.data)
+      success(res) {
+        if (res.statusCode === 200) {
+          resolve(res.data);
         } else {
-          reject(res)
+          reject(res);
         }
       },
-      fail(err){
-        reject(err)
+      fail(err) {
+        reject(err);
       },
-    })
-  })
-}
+    });
+  });
+};
 
-module.exports = request
+module.exports = request;
