@@ -32,19 +32,6 @@ Page({
   /**
    * 登录流程
    */
-  // 旧的登录云函数，现只用来拿openId
-  async getOpenId() {
-    const res = await wx.cloud.callFunction({
-      name: 'login',
-    });
-
-    const onenId = res.result.wxContext.OPENID;
-    wx.setStorage({
-      key: 'openId',
-      data: onenId,
-    });
-    return onenId;
-  },
   // 登录
   async login() {
     wx.showLoading({
@@ -52,7 +39,8 @@ Page({
     });
 
     // 获取 openId
-    const openId = wx.getStorageSync('openId') || (await this.getOpenId());
+    const openId =
+      wx.getStorageSync('openId') || 'or4p85dDj9Tbn7jaD6X0fxmt3EOg';
     getApp().globalData.openId = openId;
 
     // 登录接口
